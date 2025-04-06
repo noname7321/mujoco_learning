@@ -7,7 +7,7 @@
 cd mujoco
 mkdir build
 cmake ..
-cmake --build .
+cmake --build . 多线程编译使用 cmake --build . -j线程数
 ```  
 * 选择安装位置（推荐/opt）  
   `cmake -DCMAKE_INSTALL_PREFIX=/opt/mujoco .`
