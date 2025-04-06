@@ -11,7 +11,7 @@ cmake --build .
 ```  
 * 选择安装位置（推荐/opt）
  `cmake -DCMAKE_INSTALL_PREFIX=/opt/mujoco .`
-* sudo cmake --install .
+* `sudo cmake --install .`
 
 ## release版本
 在github上下载对应平台的压缩包解压即可
