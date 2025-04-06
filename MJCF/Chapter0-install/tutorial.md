@@ -6,6 +6,7 @@
 ```
 cd mujoco
 mkdir build
+cd build
 cmake ..
 cmake --build . 多线程编译使用 cmake --build . -j线程数
 ```  
