@@ -16,6 +16,8 @@ python版本可使用python -m mujoco.viewer启动
 |F3|profiler|
 |F4|sensors|
 |F5|全屏|
+|F6|实体名字标签|
+|F7|切换可视化坐标系|
 |TAB|隐藏左侧工具栏|
 |Delete|重置世界|
 |Q|Camera可视化|
