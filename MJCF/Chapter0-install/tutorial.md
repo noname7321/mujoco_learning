@@ -9,8 +9,8 @@ mkdir build
 cmake ..
 cmake --build .
 ```  
-* 选择安装位置（推荐/opt）
- `cmake -DCMAKE_INSTALL_PREFIX=/opt/mujoco .`
+* 选择安装位置（推荐/opt）  
+  `cmake -DCMAKE_INSTALL_PREFIX=/opt/mujoco .`
 * `sudo cmake --install .`
 
 ## release版本
