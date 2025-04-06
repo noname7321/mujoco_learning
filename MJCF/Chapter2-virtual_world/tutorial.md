@@ -53,7 +53,7 @@ density="1.225" viscosity="1.8e-5"/>
     <mesh file="card.obj" />
     <texture type="2d" file="./king_of_clubs.png" />
     <material name="king_of_clubs" texture="king_of_clubs" />
-    <hfield name="agent_eval_gym" file="agent_eval_gym.png" size="10 10 1.5 0.1" />
+    <hfield name="agent_eval_gym" file="agent_eval_gym.png" size="10 10 1 1" />
     <texture type="skybox" file="../asset/desert.png"
         gridsize="3 4" gridlayout=".U..LFRB.D.." />
     <texture name="plane" type="2d" builtin="checker" rgb1=".1 .1 .1" rgb2=".9 .9 .9"
