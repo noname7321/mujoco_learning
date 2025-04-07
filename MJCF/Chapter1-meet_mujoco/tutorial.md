@@ -20,6 +20,7 @@ python版本可使用python -m mujoco.viewer启动
 |F7|切换可视化坐标系|
 |TAB|隐藏左侧工具栏|
 |Delete|重置世界|
+|`|geom最小外界矩形和碰撞状态|
 |Q|Camera可视化|
 |W|世界网格化|
 |E|Equality|
