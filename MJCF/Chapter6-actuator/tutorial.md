@@ -105,7 +105,7 @@ jointinparent和site用的，先不用管
 |biastype	|affine|	biasprm|	0 -kp -kv|
 |actlimited	|true|		|               |
 
-这里 kp变成速度增益了，kv变为阻尼。
+这里 kp变成速度增益了，kv变为积分。
 inheritrange同上position
 
 ## damper 驱动器

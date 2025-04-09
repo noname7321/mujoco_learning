@@ -44,7 +44,7 @@
             <!-- 水平杆 -->
             <body name="rotay_am" pos="0 0 0.51">
                 <joint type="hinge" name="pivot" pos="0 0 0" axis="0 0 1" damping="0.001"
-                    frictionloss="0.0" stiffness="0.5" />
+                    frictionloss="0.0"/>
                 <geom type="capsule" mass="0.01" fromto="0 0 0 0.2 0 0" size="0.01"
                     rgba="0.8 0.2 0.2 0.5" />
                 <!-- 摆 -->
@@ -61,7 +61,7 @@
     </worldbody>
 
     <actuator>
-        <motor name="pivot" joint="pivot" />
-        <motor name="ph" joint="ph" />
+        <position kp="2" kv="0.1" name="pivot" joint="pivot" ctrlrange="-3.14 3.14" forcerange="-5 5" />
+        <intvelocity name="ph" joint="ph" kp="100" kv="2" actrange="-2 2"/>
     </actuator>
 </mujoco>
