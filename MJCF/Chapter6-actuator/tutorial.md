@@ -2,7 +2,7 @@
 <font color=DarkCyan>*actuator 节点包含在 mujoco 节点中*</font>
 这是 mujoco中运动控制的节点，在这里指定驱动器，给机器人加入肌肉。
 
-#### general 通用驱动器
+## general 通用驱动器
 ![](../asset/actuator1.png)
 ![](../asset/actuator2.png)
 &emsp;&emsp;general驱动器类似编程语言中的父对象，后面很多驱动器继承该驱动器的属性，建模的时候不要使用该驱动器。name，class，group
@@ -34,7 +34,7 @@ jointinparent和site用的，先不用管
 &emsp;&emsp;增益参数，表现为映射或者缩放
 &emsp;&emsp;偏置参数，零点偏置
 
-#### motor 驱动器
+## motor 驱动器
 扭矩控制器，和电机差不多，相当于通用驱动器如下设置：
 |Attribute	|Setting|	Attribute|	Setting|
 |-----------|-------|------------|---------|
@@ -50,7 +50,7 @@ jointinparent和site用的，先不用管
 <general joint="joint" name="Torque" ctrlrange="-1 1" dynprm="1 0 0" gainprm="1 0 0" biasprm="0 0 0"/>
 ```
 
-#### position 驱动器
+## position 驱动器
 位置控制伺服，相当于通用的
 |Attribute	|Setting	|Attribute	|Setting|
 |-----------|-----------|-----------|-------|
@@ -86,7 +86,7 @@ jointinparent和site用的，先不用管
 <position joint="joint" name="pos" kp="2" kv="0.1" />
 ```
 
-#### velocity 驱动器
+## velocity 驱动器
 速度伺服控制，等效通用驱动器：
 |Attribute|	Setting|	Attribute|	Setting|
 |---------|--------|-------------|---------|
@@ -95,7 +95,7 @@ jointinparent和site用的，先不用管
 |biastype|	affine|	biasprm|	0 0 -kv|
 
 **kv（速度增益）**
-#### intvelocity 驱动器
+## intvelocity 驱动器
 积分速度伺服：
 |Attribute	|Setting|	Attribute|	Setting|
 |-----------|-------|------------|---------|
@@ -107,7 +107,7 @@ jointinparent和site用的，先不用管
 这里 kp变成速度增益了，kv变为阻尼。
 inheritrange同上position
 
-#### damper 驱动器
+## damper 驱动器
 
 产生与速度和控制正比的力，建议开建议 option中积分器 implicitfast或者 implicit，
 F=-kv*velocity*control,等效：
@@ -118,7 +118,7 @@ F=-kv*velocity*control,等效：
 |biastype	|none	|biasprm|	0 0 0|
 |ctrllimited|	true|		||
 
-#### cylinder 驱动器
+## cylinder 驱动器
 
 气缸和液缸模拟：
 |Attribute|	Setting|	Attribute|	Setting|
