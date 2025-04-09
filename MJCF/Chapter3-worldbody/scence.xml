@@ -21,7 +21,8 @@
         <texture type="skybox" file="../asset/desert.png"
             gridsize="3 4" gridlayout=".U..LFRB.D.." />
 
-        <!-- <texture type="skybox" builtin="flat" rgb1="1 1 .1" rgb2=".9 .9 .9" width="128" height="128"/> -->
+        <!-- <texture type="skybox" builtin="flat" rgb1="1 1 .1" rgb2=".9 .9 .9" width="128"
+        height="128"/> -->
         <texture name="plane" type="2d" builtin="checker" rgb1=".1 .1 .1" rgb2=".9 .9 .9"
             width="512" height="512" mark="cross" markrgb=".8 .8 .8" />
         <material name="plane" reflectance="0.3" texture="plane" texrepeat="1 1" texuniform="true" />
@@ -40,7 +41,7 @@
     </default>
 
     <worldbody>
-        <geom name="floor" pos="0 0 0" size="0 0 .25" type="plane" material="plane"
+        <geom name="floor" pos="0 0 0" size="10 10 .1" type="plane" material="plane"
             condim="3" />
         <light directional="true" ambient=".3 .3 .3" pos="30 30 30" dir="0 -2 -1"
             diffuse=".5 .5 .5" specular=".5 .5 .5" />
@@ -51,15 +52,18 @@
             <geom class="collision" />
         </body>
 
-        <geom type="hfield" hfield="agent_eval_gym" pos="0 11 0" />
+        <!-- <geom type="hfield" hfield="agent_eval_gym" pos="0 11 0" /> -->
+
 
         <body pos="-1 0 .5">
             <freejoint />
             <geom type="sphere" size="0.1" rgba=".5 0 0 1" />
+            <site type="capsule" size="0.05 0.1" rgba="0 0 .5 1" />
         </body>
         <body pos="-0.5 0 .5">
             <freejoint />
-            <geom type="box" size="0.1 0.1 0.1" material="box" />
+            <geom type="box" size="0.1 0.1 0.1" material="box" density="1" contype="2"
+                conaffinity="3" />
         </body>
         <body pos="0 0 .5">
             <freejoint />
@@ -67,7 +71,7 @@
         </body>
         <body pos=".5 0 .5">
             <freejoint />
-            <geom type="cylinder" size="0.1 0.1" rgba=".5 .5 0 1" />
+            <geom type="cylinder" size="0.1" fromto="0 0 0 0 0 0.2" rgba=".5 .5 0 1" />
         </body>
         <body pos="1 0 .5">
             <freejoint />
@@ -82,5 +86,14 @@
             <freejoint />
             <geom type="mesh" mesh="tetrahedron" rgba=".5 .5 .5 1" />
         </body>
+
+        <body name="A" pos="0 0 2" euler="0.5 0 0">
+            <freejoint />
+            <geom type="sphere" size="0.1" rgba=".2 0 0 1" />
+            <body name="B" pos="0 0 0.5" euler="0.5 0 0">
+                <geom type="capsule" size="0.05 0.1" rgba="0 0 .2 1" />
+            </body>
+        </body>
+
     </worldbody>
 </mujoco>

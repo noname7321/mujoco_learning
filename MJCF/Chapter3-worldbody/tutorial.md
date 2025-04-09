@@ -13,6 +13,9 @@
 *   mass（质量，单位kg，它和密度只能有一个），density="0"（密度，单位kg/m³，它和质量拼了）
 *   shellinertia=[true/false]（开了就是质量集中在边缘，关了就是均匀密度）
 *   fromto="0 0 0 0 0 0"（类似旋转通常代替旋转+长度，只能用于胶囊、盒子、圆柱体和椭球体，前三个是point1，后三个point2，几何体的Z轴正方向为point2->point1）
+*   quat, axisangle, xyaxes, zaxis, euler
+**quat:wxyz,isaac gym:xyzw**
+**euler:xyz**
 
 |type	|size参数量|	描述|
 |---|---|---|
