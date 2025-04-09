@@ -4,35 +4,36 @@
 
 ## general 通用驱动器
 ![](../asset/actuator1.png)
-![](../asset/actuator2.png)
-&emsp;&emsp;general驱动器类似编程语言中的父对象，后面很多驱动器继承该驱动器的属性，建模的时候不要使用该驱动器。name，class，group
-**ctrllimited=[false/true/auto]**
-&emsp;&emsp;控制限制，指对驱动器输入值限制，默认 auto
-**ctrlrange="0 0"**
-&emsp;&emsp;控制范围
-**forcelimited==[false/true/auto]**
-&emsp;&emsp;驱动器输出力范围
-**forcerange="0 0"**
-&emsp;&emsp;力范围
-**actlimited==[false/true/auto]**
-&emsp;&emsp;驱动器活动范围
-**actrange="0 0"**
-&emsp;&emsp;活动范围，如平面关节为角度范围，默认单位按照设置单位**lengthrange="0 0"**
-&emsp;&emsp;活动长度范围，模拟肌肉用到的
-**cranklength="0"**
-&emsp;&emsp;用于滑块曲柄，设置连杆长度，先建立连杆结构的几何体，之后直接将组合几何体给到 cranksite
-**cranksite="string"**
-&emsp;&emsp;指定曲柄滑块机构
-**gear="100000"**
+![](../asset/actuator2.png)  
+
+&emsp;&emsp;general驱动器类似编程语言中的父对象，后面很多驱动器继承该驱动器的属性，建模的时候不要使用该驱动器。name，class，group   
+**ctrllimited=[false/true/auto]**   
+&emsp;&emsp;控制限制，指对驱动器输入值限制，默认 auto   
+**ctrlrange="0 0"**     
+&emsp;&emsp;控制范围        
+**forcelimited==[false/true/auto]**     
+&emsp;&emsp;驱动器输出力范围        
+**forcerange="0 0"**        
+&emsp;&emsp;力范围      
+**actlimited==[false/true/auto]**       
+&emsp;&emsp;驱动器活动范围      
+**actrange="0 0"**      
+&emsp;&emsp;活动范围，如平面关节为角度范围，默认单位按照设置单位**lengthrange="0 0"**       
+&emsp;&emsp;活动长度范围，模拟肌肉用到的        
+**cranklength="0"**     
+&emsp;&emsp;用于滑块曲柄，设置连杆长度，先建立连杆结构的几何体，之后直接将组合几何体给到 cranksite      
+**cranksite="string"**      
+&emsp;&emsp;指定曲柄滑块机构        
+**gear="100000"**       
 &emsp;&emsp;对力进行缩放第一个参数有效，其余是joint、
-jointinparent和site用的，先不用管
-**tendon="string"**
-&emsp;&emsp;肌腱，抽象控制器组合，比如双轮同时控制，多个控制器合成一控制输入
-**dynprm，gainprm，biasprm**
-这些参数都是任意数量
-&emsp;&emsp;激活动态参数,表现为阻尼或者响应
-&emsp;&emsp;增益参数，表现为映射或者缩放
-&emsp;&emsp;偏置参数，零点偏置
+jointinparent和site用的，先不用管       
+**tendon="string"**     
+&emsp;&emsp;肌腱，抽象控制器组合，比如双轮同时控制，多个控制器合成一控制输入        
+**dynprm，gainprm，biasprm**        
+这些参数都是任意数量        
+&emsp;&emsp;激活动态参数,表现为阻尼或者响应     
+&emsp;&emsp;增益参数，表现为映射或者缩放        
+&emsp;&emsp;偏置参数，零点偏置      
 
 ## motor 驱动器
 扭矩控制器，和电机差不多，相当于通用驱动器如下设置：
