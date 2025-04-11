@@ -8,7 +8,7 @@
     <visual>
         <global realtime="1" />
         <quality shadowsize="16384" numslices="28" offsamples="4" />
-        <headlight diffuse="1 1 1" specular="0.5 0.5 0.5" active="0" />
+        <headlight diffuse="1 1 1" specular="0.5 0.5 0.5" active="1" />
         <rgba fog="1 0 0 1" haze="1 1 1 1" />
     </visual>
 
@@ -38,11 +38,12 @@
         <light directional="true" ambient=".3 .3 .3" pos="30 30 30" dir="0 -2 -1"
             diffuse=".5 .5 .5" specular=".5 .5 .5" />
 
-        <light mode="targetbody" target="A" directional="false" ambient=".3 .3 .3" pos="0 0 10"
+        <!-- <light mode="targetbodycom" target="A" directional="false" ambient=".3 .3 .3" pos="0 0
+        10"
             dir="0 -2 -1" cutoff="15" exponent="0"
-            diffuse=".5 .5 .5" specular=".5 .5 .5" />
+            diffuse=".5 .5 .5" specular=".5 .5 .5" /> -->
 
-        <body name="A" pos="0 0 0.2">
+        <!-- <body name="A" pos="0 0 0.2">
             <freejoint />
             <geom type="box" size=".1 .1 .1" />
         </body>
@@ -51,19 +52,24 @@
         <body name="B" pos="0 0 0.5">
             <freejoint />
             <geom type="box" size=".1 .1 .1" rgba=".8 .1 .1 1" />
-            <!-- <light mode="track" directional="false" ambient=".3 .3 .3" diffuse=".5 .5 .5" specular=".5 .5 .5" /> -->
+            <light mode="trackcom" directional="false" ambient=".3 .3 .3" diffuse=".5 .5 .5" specular=".5 .5
+        .5" />
+        </body> -->
+
+
+        <body name="laser" pos="0 0 0.5">
+            <geom type="sphere" size="0.01" rgba="0.2 0.2 0.2 1" />
+            <replicate count="25" euler="0 0.251327412 0" sep="BBB">
+            <replicate count="25" euler="0 0 0.251327412" sep="AAA" offset="0.01 0.01 0.01">
+                <site name="rf" pos="0.02 0 0" zaxis="1 0 0" size="0.001 0.001 0.001"
+                    rgba="0.2 0.2 0.2 1" />
+            </replicate>
+            </replicate>
         </body>
 
-
-        <!-- <body name="laser" pos="0 0 0.5">
-            <geom type="sphere" size="0.01" rgba="0.2 0.2 0.2 1" />
-            <replicate count="25" euler="0 0.251327412 0">
-                <replicate count="25" euler="0 0 0.251327412">
-                    <site name="rf" pos="0.05 0 0" zaxis="1 0 0" size="0.001 0.001 0.001"
-                        rgba="0.2 0.2 0.2 1" />
-                </replicate>
-            </replicate>
-        </body> -->
+        <!-- <replicate count="10" offset="0 .5 0">
+            <geom type="box" size=".1 .1 .1" />
+        </replicate> -->
 
         <!-- <geom type="box" size="5 0.1 5" pos="0 5 0" rgba="0.2 0.2 0.2 0.2"/>
         <geom type="box" size="5 0.1 5" pos="0 -5 0" rgba="0.2 0.2 0.2 0.2"/>
