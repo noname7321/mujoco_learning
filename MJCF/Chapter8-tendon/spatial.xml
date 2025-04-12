@@ -1,0 +1,62 @@
+<mujoco model="example">
+    <compiler angle="radian" meshdir="meshes" autolimits="true" />
+    <option timestep="0.01" gravity="0 0 -9.81" integrator="implicitfast" />
+    <asset>
+        <texture type="skybox" file="/home/albusgive/CPP_space/mujoco_test/desert.png"
+            gridsize="3 4" gridlayout=".U..LFRB.D.." />
+        <texture name="plane" type="2d" builtin="checker" rgb1=".1 .1 .1" rgb2=".9 .9 .9"
+            width="512" height="512" mark="cross" markrgb=".8 .8 .8" />
+        <material name="plane" reflectance="0.3" texture="plane" texrepeat="1 1" texuniform="true" />
+    </asset>
+    <visual>
+        <!-- 质量 -->
+        <quality shadowsize="16384" numslices="28" offsamples="4" />
+        <headlight diffuse="1 1 1" specular="0.5 0.5 0.5" active="0" />
+    </visual>
+
+    <worldbody>
+        <light directional="true" pos="0 0 30" dir="0 -0.5 -1" />
+        <geom name="floor" pos="0 0 0" size="0 0 .25" type="plane" material="plane"
+            condim="3" />
+
+        <body pos="0 0 1">
+            <site name="ceiling" pos="0 0 0" />
+            <geom type="sphere" size="0.2" />
+            <body pos="0 0 0">
+                <site name="hook1" type="sphere" size="0.03" pos="0.2 0.05 0.1" rgba="0 1 0 1" />
+                <geom type="capsule" size="0.1" fromto="0 0 0 1 0 0" />
+                <joint name="joint1" type="hinge" axis="0 0 1"/>
+                <body pos="1 0 0">
+                    <site name="hook2" type="sphere" size="0.03" pos="0.1 0.05 0.1" rgba="0 1 0 1" />
+                    <site name="hook4" type="sphere" size="0.03" pos="0.99 -0.1 0.1" rgba="0 1 0 1" />
+                    <geom type="capsule" size="0.1" fromto="0 0 0 1 0 0" />
+                    <joint name="joint2" type="hinge" axis="0 0 1" range="0 1.57"/>
+                    <body pos="1 0 0">
+                        <site name="hook3" type="sphere" size="0.03" pos="0.1 0.05 0.1"
+                            rgba="0 1 0 1" />
+                        <geom type="capsule" size="0.1" fromto="0 0 0 1 0 0" />
+                        <joint name="joint3" type="hinge" axis="0 0 1" range="0 0.78"/>
+                        <site name="hook5" type="sphere" size="0.03" pos="0.3 -0.1 0.1"
+                            rgba="0 1 0 1" />
+                    </body>
+                </body>
+            </body>
+        </body>
+    </worldbody>
+
+    <tendon>
+        <spatial name="M" springlength="0 0.5" stiffness="1000" damping="10" width="0.01" rgba="1 0 0 1">
+            <site site="ceiling" />
+            <site site="hook1" />
+            <site site="hook2" />
+            <site site="hook3" />
+        </spatial>
+        <spatial name="A" springlength="0 0.5" stiffness="1000" damping="10" width="0.01" rgba="1 0 0 1">
+            <site site="hook4" />
+            <site site="hook5" />
+        </spatial>
+    </tendon>
+    <actuator>
+        <muscle name="A" tendon="A" ctrlrange="-15 15"/>
+    </actuator>
+</mujoco>
