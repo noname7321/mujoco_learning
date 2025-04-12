@@ -14,8 +14,7 @@
 **frictionloss="0"**        
 &emsp;&emsp;摩擦损失        
 **width="0.003"**       
-&emsp;&emsp;肌腱半径，可视化部分        
-**springlength="-1 -1"**        
+&emsp;&emsp;肌腱半径，可视化部分           
 **stiffness="0"**       
 &emsp;&emsp;刚性系数，相当于弹簧的弹力系数      
 **damping="0"**     
