@@ -23,9 +23,9 @@
 <font color=Green>*演示1：*</font>
 ```xml
 <camera name="cam2armor" mode="targetbody"  target="armor0" principalpixel="200 200" focalpixel="1280 1080" sensorsize="4 4" resolution="1280 1080"/>
-```xml
-<font color=Green>*演示2：*</font>
 ```
+<font color=Green>*演示2：*</font>
+```xml
 <camera name="cam2armor1" mode="targetbody" target="armor0" fovy="54.225" />
 ```
 
