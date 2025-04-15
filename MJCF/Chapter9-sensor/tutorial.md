@@ -131,15 +131,3 @@ geom组而在visualizer中不可见的会被测量。
 ## 质心传感器
 &emsp;&emsp;subtreecom可以获得body的运动质心的全局坐标。subtreelinvel可以获得body运动质心的线速度，subtreeangmom获得质心角动量。
 这些传感器都是两个参数name和body（指定测量body）。
-
-## 初始化
-
-**keyframe** （在mujoco下）
-![](../asset/keyframe.png)
-这些参数都是我们在接口中可以直接控制的参数，可以作为初始化输入。
-<font color=Green>*演示：*</font>
-```xml
-<keyframe>
-<key name="initial" ctrl="0 0 -1.57 0 3.14 0 1.57 0" />
-</keyframe>
-```
