@@ -3,7 +3,7 @@
 对值输出数据**
 
 ## camera
-&emsp;&emsp;和light元素很像，就像一个聚光灯一样。相同的配置有name.mode,target.pos,姿态的quat, axisangle, xyaxes, zaxis, euler，这些配置和上面的light一样。下面说明特有配置。（获取相机画面在mujoco接口里面讲解）
+&emsp;&emsp;和light元素很像，就像一个聚光灯一样。相同的配置有name.mode,target.pos,姿态的quat, axisangle, xyaxes, zaxis, euler，这些配置和上面的light一样。下面说明特有配置。（获取相机画面在mujoco接口里面讲解）        
 **mode=[fixed/track/trackcom/targetbody/targetbodycom]**    
 ***设置相机视野有分为两种：***      
 **1. fovy=" 45 "（垂直视野，单位度）。**        
