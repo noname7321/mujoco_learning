@@ -66,6 +66,7 @@
         <subtreelinvel name="base_lin_vel" body="B" />
         <gyro name='base_ang_vel' site='imu' />
         <framepos name='base_pos' objtype='body' objname='B' />
+        <accelerometer name="accel" site="imu" />
 
         <force name="force" site="force_torque" />
         <torque name="torque" site="force_torque" />

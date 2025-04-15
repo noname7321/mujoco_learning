@@ -35,13 +35,13 @@
 固定到 site上。
 &emsp;&emsp;在使用传感器的时候一般使用一个site作为传感器安装位置，然后将传感器的site固定到site上。
 <font color=Green>*演示：*</font>
-```
+```xml
 <site name="imu" type="box" size="0.02 0.02 0.02"  />
 ......
 <sensor>
-<gyro name="gyro" site="imu" />
+<framequat name='orientation' objtype='site' objname='imu' />
 <accelerometer name="accel" site="imu" />
-<velocimeter name="velo" site="imu" />
+<gyro name='base_ang_vel' site='imu' />
 </sensor>
 ```
 
