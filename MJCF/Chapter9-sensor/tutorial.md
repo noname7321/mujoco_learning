@@ -4,21 +4,21 @@
 
 ## camera
 &emsp;&emsp;和light元素很像，就像一个聚光灯一样。相同的配置有name.mode,target.pos,姿态的quat, axisangle, xyaxes, zaxis, euler，这些配置和上面的light一样。下面说明特有配置。（获取相机画面在mujoco接口里面讲解）
-**mode=[fixed/track/trackcom/targetbody/targetbodycom]**  
-***设置相机视野有分为两种：***
-**1. fovy=" 45 "（垂直视野，单位度）。**
+**mode=[fixed/track/trackcom/targetbody/targetbodycom]**    
+***设置相机视野有分为两种：***      
+**1. fovy=" 45 "（垂直视野，单位度）。**        
 **2. focal=" 00 "（焦距还对画面的长宽拉伸有影响，长度单位），sensorsize=" 00 "
-（传感器尺寸，对畸变影响较大），resolution=" 00 "（分辨率）。**
-**focalpixel=" 0 0 "**
-&emsp;&emsp;焦距，单位像素
-**sensorsize=" 00 "**
-&emsp;&emsp;传感器角度
-**resolution=" 00 "**
-&emsp;&emsp;分辨率
-相机中心位置和fovy冲突principal="0 0"（相机中心位置，长度单位），
-**principalpixel="0 0"**
-&emsp;&emsp;相机中心位置，像素偏移
-**ipd="0.068"**
+（传感器尺寸，对畸变影响较大），resolution=" 00 "（分辨率）。**     
+**focalpixel=" 0 0 "**      
+&emsp;&emsp;焦距，单位像素      
+**sensorsize=" 00 "**       
+&emsp;&emsp;传感器角度      
+**resolution=" 00 "**       
+&emsp;&emsp;分辨率      
+相机中心位置和fovy冲突principal="0 0"（相机中心位置，长度单位）       
+**principalpixel="0 0"**        
+&emsp;&emsp;相机中心位置，像素偏移      
+**ipd="0.068"**     
 &emsp;&emsp;瞳距，给双目用的
 <font color=Green>*演示1：*</font>
 ```xml
