@@ -109,16 +109,16 @@ geom组而在visualizer中不可见的会被测量。
 **前面带 fram的都是可以获得全局或者相对的传感器数据。**
 
 ## 位置传感器
-![](../asset/framepos.png)
-**objtype=[body,xbody,geom,site,camera]**
-&emsp;&emsp;传感器链接对象类型，body是全局,xbody是相对坐标
-**objname=""**
-&emsp;&emsp;传感器链接对象
-**reftype=[body,xbody,geom,site,camera]**
-&emsp;&emsp;参照系所附加到的对象的类型
-**refname=""**
-&emsp;&emsp;引用框架所附加到的对象的名称。
-&emsp;&emsp;解释：如果指定了 reftype和 refname那么传感器测量的就是相对于 refname的坐标。
+![](../asset/framepos.png)      
+**objtype=[body,xbody,geom,site,camera]**       
+&emsp;&emsp;传感器链接对象类型，body是全局,xbody是相对坐标      
+**objname=""**      
+&emsp;&emsp;传感器链接对象      
+**reftype=[body,xbody,geom,site,camera]**       
+&emsp;&emsp;参照系所附加到的对象的类型      
+**refname=""**      
+&emsp;&emsp;引用框架所附加到的对象的名称。      
+&emsp;&emsp;解释：如果指定了 reftype和 refname那么传感器测量的就是相对于 refname的坐标。        
 
 ## 姿态传感器
 ![](../asset/framequat.png)
