@@ -23,18 +23,20 @@
         <light directional="true" ambient=".3 .3 .3" pos="30 30 30" dir="0 -.5 -1"
             diffuse=".5 .5 .5" specular=".5 .5 .5" />
 
+        <camera name="c2" pos="1 0 1" mode="targetbody" target="B" fovy="54.225" />
+
         <body name="B" pos="0 0 0">
             <freejoint />
             <site name="imu" />
-            <camera name="cam2armor1" mode="track" fovy="54.225" />
-            <geom type="box" size="0.1 0.1 0.1" />
+            <camera name="c1" mode="fixed" fovy="54.225" euler="1.57 0 0" />
+            <geom type="box" size="0.1 0.1 0.1" rgba=".5 .5 .5 1" />
         </body>
 
         <body pos="0 0 1">
             <geom type="box" size=".3 .3 .005" rgba=".2 .2 .2 1" />
             <body name="up_box" pos="0 0 .02">
                 <site name="force_torque" />
-                <geom type="box" size=".3 .3 .005" rgba=".3 .3 1 1" mass="0.01"/>
+                <geom type="box" size=".3 .3 .005" rgba=".3 .3 1 1" mass="0.01" />
             </body>
         </body>
 
@@ -50,7 +52,7 @@
                     rgba="0.8 0.2 0.2 0.5" />
                 <!-- 摆 -->
                 <body name="pendulum" pos="0.2 0 0">
-                    <joint type="hinge" name="ph" pos="0 0 0" axis="1 0 0" damping="0.001"
+                    <joint type="ball" name="ph" pos="0 0 0" damping="0.001"
                         frictionloss="0.0" />
                     <geom type="capsule" mass="0.005" fromto="0 0 0 0 0 -0.3" size="0.01"
                         rgba="0.8 0.2 0.2 1" />
@@ -62,17 +64,18 @@
 
     </worldbody>
     <sensor>
-        <framequat name='orientation' objtype='site' objname='imu' />
-        <subtreelinvel name="base_lin_vel" body="B" />
+        <!-- <framequat name='orientation' objtype='site' objname='imu' />
         <gyro name='base_ang_vel' site='imu' />
-        <framepos name='base_pos' objtype='body' objname='B' />
-        <accelerometer name="accel" site="imu" />
-
+        <accelerometer name="accel" site="imu" /> -->
+        <subtreelinvel name="base_lin_vel" body="B" />
+        <!-- <framepos name='base_pos' objtype='body' objname='B' />
         <force name="force" site="force_torque" />
         <torque name="torque" site="force_torque" />
-
         <jointpos name='pivot_p' joint='pivot' />
         <jointvel name='pivot_v' joint='pivot' />
+
+        <ballquat name="ballquat" joint="ph" />
+        <ballangvel name="ballangvel" joint="ph" /> -->
     </sensor>
 
     <actuator>
