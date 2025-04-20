@@ -64,7 +64,7 @@
         <connect site1="red_connect" site2="white_connect" />
         <!-- <weld site1="red_connect" site2="white_connect" torquescale="0"/> -->
 
-        <joint joint1="pivot1" joint2="pivot2" polycoef="0 1 0 0 0"/>
+        <joint joint1="pivot1" joint2="pivot2" polycoef="0 1 0 0 1"/>
     </equality>
 
     <tendon>
@@ -76,6 +76,6 @@
 
     <actuator>
         <position name="connect" tendon="open" kp="2" kv="0.1" ctrlrange="-3.14 3.14" />
-        <position name="joint" joint="pivot2" kp="2" kv="0.1" ctrlrange="-10 10" />
+        <position name="joint" joint="pivot2" kp="2" kv="0.1" ctrlrange="-1 1" />
     </actuator>
 </mujoco>
