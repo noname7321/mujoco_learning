@@ -47,7 +47,7 @@
         </body>
 
         <body pos="1 0 0">
-            <geom type="cylinder" mass="100" size="0.05 0.5" rgba="0.2 0.2 0.2 1" />
+            <geom type="cylinder" mass="100" size="0.05 0.5" rgba="1 1 1 1" />
             <body pos="0 0 0.51">
                 <joint type="hinge" name="pivot2" pos="0 0 0" axis="0 0 1" damping="0"
                     frictionloss="0.0" stiffness="0" />
@@ -59,10 +59,10 @@
     </worldbody>
 
     <equality>
-        <!-- <weld body1="red_b" body2="white_b" anchor="0.1 0.1 0" torquescale="0"/> -->
+        <!-- <connect body1="red_b" body2="white_b" anchor="0.2 0 0"/> -->
 
-        <connect site1="red_connect" site2="white_connect" />
-        <!-- <weld site1="red_connect" site2="white_connect" torquescale="0"/> -->
+        <!-- <connect site1="red_connect" site2="white_connect" /> -->
+        <weld site1="red_connect" site2="white_connect" torquescale="0"/>
 
         <joint joint1="pivot1" joint2="pivot2" polycoef="0 1 0 0 1"/>
     </equality>
@@ -75,7 +75,7 @@
     </tendon>
 
     <actuator>
-        <position name="connect" tendon="open" kp="2" kv="0.1" ctrlrange="-3.14 3.14" />
+        <position name="connect" tendon="open" kp="2" kv="0.1" ctrlrange="-10 10" />
         <position name="joint" joint="pivot2" kp="2" kv="0.1" ctrlrange="-1 1" />
     </actuator>
 </mujoco>
