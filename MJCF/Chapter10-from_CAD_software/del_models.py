@@ -70,6 +70,10 @@ if __name__ == "__main__":
         "right_hip", 
         "right_thigh", 
         "right_calf", 
+        # "8009连杆-1",
+        # "8009连杆-2",
+        # "连杆-1",
+        # "连杆-2",
     ]
     path_list = [parent_path / folder_name for folder_name in predefined_paths]
     

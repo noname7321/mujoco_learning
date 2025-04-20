@@ -54,7 +54,9 @@ def process_single_csv(csv_path):
         f.write("    " + "\n    ".join(mesh_output) + "\n")
         f.write("  </asset>\n\n")
         f.write("  <worldbody>\n")
+        f.write("  <body>\n")
         f.write("    " + "\n    ".join(geom_output) + "\n")
+        f.write("  </body>\n")
         f.write("  </worldbody>\n")
         f.write("</mujoco>")
     

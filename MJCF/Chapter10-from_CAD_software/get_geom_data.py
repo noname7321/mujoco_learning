@@ -4,7 +4,7 @@ import re
 from pypinyin import lazy_pinyin, Style
 
 def chinese_to_pinyin(name):
-    #将文件名转换为拼音格式
+    # 将文件名转换为拼音格式（保持不变）
     parts = re.split(r'([\u4e00-\u9fff]+)', name)
     pinyin_parts = []
     for part in parts:
@@ -19,9 +19,9 @@ def chinese_to_pinyin(name):
     return '_'.join(filter(None, pinyin_parts))
 
 def process_files(csv_file, stl_ext, target_dir='.'):
-    # 加载质量数据
+    # 修改1: 使用 GBK 编码读取 CSV 文件（适配中文环境生成的 CSV）
     mass_data = {}
-    with open(csv_file, 'r', encoding='utf-8-sig') as f:
+    with open(csv_file, 'r', encoding='gbk') as f:  # 重点修改这里！！！
         reader = csv.reader(f)
         for row in reader:
             if len(row) < 2: 
@@ -34,6 +34,7 @@ def process_files(csv_file, stl_ext, target_dir='.'):
                 mass = 0
             mass_data[pinyin_name] = mass
 
+    # 后续代码保持不变...
     results = []
     for filename in os.listdir(target_dir):
         filepath = os.path.join(target_dir, filename)
@@ -46,7 +47,7 @@ def process_files(csv_file, stl_ext, target_dir='.'):
         base_name = os.path.splitext(filename)[0]
         new_base = chinese_to_pinyin(base_name)
         new_filename = f"{new_base}.stl"
-        matched_mass = next((v for k, v in mass_data.items() if k in new_base), 0.001)
+        matched_mass = next((v for k, v in mass_data.items() if k in new_base), 0.0001)
         results.append({
             "original_name": filepath, 
             "pinyin_name": new_base,
@@ -56,6 +57,7 @@ def process_files(csv_file, stl_ext, target_dir='.'):
 
     return results
 
+# 其余代码保持不变...
 CSV_FILE = 'mass.csv'
 STL_EXT = ('.stl', '.STL')
 target_dir = [
