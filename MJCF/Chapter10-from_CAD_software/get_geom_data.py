@@ -4,7 +4,6 @@ import re
 from pypinyin import lazy_pinyin, Style
 
 def chinese_to_pinyin(name):
-    # 将文件名转换为拼音格式（保持不变）
     parts = re.split(r'([\u4e00-\u9fff]+)', name)
     pinyin_parts = []
     for part in parts:
@@ -19,9 +18,8 @@ def chinese_to_pinyin(name):
     return '_'.join(filter(None, pinyin_parts))
 
 def process_files(csv_file, stl_ext, target_dir='.'):
-    # 修改1: 使用 GBK 编码读取 CSV 文件（适配中文环境生成的 CSV）
     mass_data = {}
-    with open(csv_file, 'r', encoding='gbk') as f:  # 重点修改这里！！！
+    with open(csv_file, 'r', encoding='gbk') as f:
         reader = csv.reader(f)
         for row in reader:
             if len(row) < 2: 
@@ -34,7 +32,6 @@ def process_files(csv_file, stl_ext, target_dir='.'):
                 mass = 0
             mass_data[pinyin_name] = mass
 
-    # 后续代码保持不变...
     results = []
     for filename in os.listdir(target_dir):
         filepath = os.path.join(target_dir, filename)
@@ -57,7 +54,6 @@ def process_files(csv_file, stl_ext, target_dir='.'):
 
     return results
 
-# 其余代码保持不变...
 CSV_FILE = 'mass.csv'
 STL_EXT = ('.stl', '.STL')
 target_dir = [
@@ -68,6 +64,12 @@ target_dir = [
         "right_hip", 
         "right_thigh", 
         "right_calf", 
+        "left_connect1", 
+        "left_connect2", 
+        "left_point_foot2", 
+        "right_connect1", 
+        "right_connect2", 
+        "right_point_foot2", 
     ]
 
 for dir in target_dir:

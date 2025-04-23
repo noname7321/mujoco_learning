@@ -19,7 +19,7 @@ def load_mapping(csv_file):
             mapping[original_name] = (pinyin_name, new_filename, mass_kg)
     return mapping
 
-def process_single_csv(csv_path):
+def process_single_csv(csv_path,body_name):
     identifier = csv_path.stem.split("_", 2)[-1]
     target_dir = Path(f"assets")
     output_xml = Path(f"output_{identifier}.xml")
@@ -44,7 +44,7 @@ def process_single_csv(csv_path):
         processed_data.append((pinyin_name, new_name, mass))
     
     mesh_output = [f'<mesh file="{fn}"/>' for _, fn, _ in processed_data]
-    geom_output = [f'<geom type="mesh" mesh="{pn}" mass="{m:.4f}"/>' for pn, _, m in processed_data]
+    geom_output = [f'<geom type="mesh" mesh="{pn}" mass="{m:.4f}" class="{body_name}_default"/>' for pn, _, m in processed_data]
     
     with open(output_xml, "w", encoding='utf-8') as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
@@ -53,8 +53,13 @@ def process_single_csv(csv_path):
         f.write("  <asset>\n")
         f.write("    " + "\n    ".join(mesh_output) + "\n")
         f.write("  </asset>\n\n")
+        f.write("  <default>\n")
+        f.write(f'  <default class="{body_name}_default">\n')
+        f.write('  <geom contype="0" conaffinity="0"/>\n')
+        f.write("  </default>\n")
+        f.write("  </default>\n\n")
         f.write("  <worldbody>\n")
-        f.write("  <body>\n")
+        f.write(f'  <body name="{body_name}_body" pos="0 0 0">\n')
         f.write("    " + "\n    ".join(geom_output) + "\n")
         f.write("  </body>\n")
         f.write("  </worldbody>\n")
@@ -74,9 +79,10 @@ if __name__ == "__main__":
     for csv_path in csv_files:
         print(f"\n{'='*40}")
         print(f"开始处理：{csv_path.name}")
+        body_name = csv_path.name.replace("geom_data_", "").replace(".csv", "")
         
         try:
-            total, success = process_single_csv(csv_path)
+            total, success = process_single_csv(csv_path,body_name)
             failed = total - success
             total_files += total
             total_success += success
