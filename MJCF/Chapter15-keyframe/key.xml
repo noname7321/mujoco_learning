@@ -1,0 +1,8 @@
+<mujoco>
+    <keyframe>
+        <key qpos="0.03" mpos="0 0 .5"/>
+        <key qpos="0.06" mquat="1 0 0 0"/>
+        <key qpos="0.06" mquat="0.7 0.1 0.7 0"/>
+        <key qpos="0.09" />
+    </keyframe>
+</mujoco>
