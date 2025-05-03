@@ -20,12 +20,12 @@
         <light directional="true" ambient=".3 .3 .3" pos="30 30 30" dir="0 -.5 -1"
             diffuse=".5 .5 .5" specular=".5 .5 .5" />
 
-        <composite type="particle" prefix="bullet" count="5 5 5" spacing="0.01" offset="1 1 2">
+        <composite type="particle" prefix="bullet" count="5 5 5" spacing="0.01" offset="1 1 1">
             <geom type="sphere" size="0.0084" material="y2c" mass="0.0032" />
             <joint kind="particle" type="free" />
         </composite>
 
-        <composite type="grid" prefix="C" count="10 1 1" spacing="0.1" offset="1 1 2">
+        <composite type="grid" prefix="C" count="10 1 1" spacing="0.1" offset="1 1 1.5">
             <geom type="sphere" size="0.0084" material="r2b" mass="0.0032" />
             <joint kind="twist" type="free" />
         </composite>

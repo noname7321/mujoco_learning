@@ -17,7 +17,7 @@
 **pin-coord=""**        
 &emsp;&emsp;复合体固定位置      
 <font color=Green>*演示：*</font>
-**1. 粒子集合**
+**1. 粒子集合**         
 ```xml
 <composite type="particle" prefix="bullet" count="5 5 10" spacing="0.01" offset="1 1 2">
 <geom type="sphere" size="0.0084" material="green_grapes" mass="0.0032" />
@@ -26,7 +26,7 @@
 ```
 &emsp;&emsp;这里是创建了一个 5 * 5 * 10 的小弹丸集合，命名为 bullet，joint添加 particle是给粒
 子用的，free就是代表可以自由碰撞。
-**2. 绳**
+**2. 绳**       
 ```xml
 <composite type="grid" prefix="C" count="10 1 1" spacing="0.1" offset="1 1 2">
 <geom type="sphere" size="0.0084" material="green_grapes" mass="0.0032" />
@@ -37,7 +37,7 @@
 注意这里 1 D的仿真的 count。joint的 twist是给这类复合体使用的，也可以不加入
 joint。
 ![](../asset/rope.png)
-**3. 悬挂鱼网**
+**3. 悬挂鱼网**     
 ```xml
 <composite type="grid" prefix="C" count="10 10 1" spacing="0.1" offset="1 1 2">
 <geom type="sphere" size="0.0084" material="green_grapes" />
@@ -49,7 +49,7 @@ joint。
 &emsp;&emsp;这里我们还是使用 grid，创造了一个 10 * 10 的网，网格间距为 0. 1 ,通过 pin的作用是
 固定网面上的( 0 , 0 )和( 0 , 9 )点让网悬挂起来。
 ![](../asset/grid.png)
-**4. 布料**
+**4. 布料**         
 ```xml
 <composite type="grid" count="5 5 1" spacing="0.6" offset="0 0 3">
 <skin texcoord="true" material="plane" inflate="0.01" subgrid="3" />
