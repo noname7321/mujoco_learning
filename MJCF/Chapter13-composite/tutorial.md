@@ -25,8 +25,8 @@
 </composite>
 ```
 &emsp;&emsp;这里是创建了一个 5 * 5 * 10 的小弹丸集合，命名为 bullet，joint添加 particle是给粒
-子用的，free就是代表可以自由碰撞。
-**2. 绳**       
+子用的，free就是代表可以自由碰撞。          
+**2. 绳**           
 ```xml
 <composite type="grid" prefix="C" count="10 1 1" spacing="0.1" offset="1 1 2">
 <geom type="sphere" size="0.0084" material="green_grapes" mass="0.0032" />
