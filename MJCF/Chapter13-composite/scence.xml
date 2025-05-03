@@ -38,11 +38,11 @@
         </composite>
 
         <composite type="grid" count="5 5 1" spacing="0.6" offset="0 0 3">
-            <skin texcoord="true" material="plane" inflate="0.01" subgrid="3" />
+            <skin texcoord="true" material="plane" inflate="0.001" subgrid="3" />
             <pin coord="0 0" />
             <pin coord="4 0" />
             <geom size="0.1" />
-            <joint kind="main" damping="5" />
+            <joint kind="main" damping="50" />
         </composite>
 
     </worldbody>
