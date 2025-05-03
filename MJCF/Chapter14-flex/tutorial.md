@@ -12,12 +12,12 @@
 **rgba=""**        
 &emsp;&emsp;颜色
 
-## edge
+## flex/edge
 边缘弯曲的阻尼和刚度
 **stiffness="0"**       
 **damping="0"**   
 
-## elasticity
+## flex/elasticity
 有限元参数
 **young="0"**        
 &emsp;&emsp;杨式模量        
@@ -28,7 +28,7 @@
 **thickness="-1"**        
 &emsp;&emsp;壳厚，长度单位;仅适用于二手 2D 弯曲。用于缩放拉伸刚度。 此厚度可以设置为等于半径的 2 倍，以匹配几何体， 但会单独显示，因为半径可能受到与碰撞检测相关的注意事项的限制。  
 
-## contact
+## flex/contact
 **internal="false"**        
 &emsp;&emsp;启用或禁用内部碰撞        
 **selfcollide="auto" [none, narrow, bvh, sap, auto]**        
@@ -62,14 +62,14 @@
 **scale=""**        
 &emsp;&emsp;点坐标缩放，宏观就是尺寸缩放       
 
-## edge
+## flexcomp/edge
 边缘弯曲的阻尼和刚度
 **stiffness="0"**       
 **damping="0"**  
 **equality="false"  [true, false]**  
 &emsp;&emsp;约束边缘    
 
-## pin
+## flexcomp/pin
 固定body/grid
 **id=""**        
 &emsp;&emsp;位置        
