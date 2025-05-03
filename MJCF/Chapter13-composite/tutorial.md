@@ -16,7 +16,7 @@
 &emsp;&emsp;复合体活动类型      
 **pin-coord=""**        
 &emsp;&emsp;复合体固定位置      
-<font color=Green>*演示：*</font>
+<font color=Green>*演示：*</font>       
 **1. 粒子集合**         
 ```xml
 <composite type="particle" prefix="bullet" count="5 5 10" spacing="0.01" offset="1 1 2">
