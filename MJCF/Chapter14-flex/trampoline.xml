@@ -1,0 +1,46 @@
+<mujoco>
+  <option timestep="0.001" solver="CG" tolerance="1e-6" integrator="implicitfast" />
+  <size memory="10M" />
+  <asset>
+    <mesh name="tetrahedron" vertex="0 0 0 1 0 0 0 1 0 0 0 1" />
+    <texture type="skybox" file="../asset/desert.png"
+      gridsize="3 4" gridlayout=".U..LFRB.D.." />
+    <texture name="plane" type="2d" builtin="checker" rgb1=".1 .1 .1" rgb2=".9 .9 .9"
+      width="512" height="512" mark="cross" markrgb=".8 .8 .8" />
+    <material name="plane" reflectance="0.3" texture="plane" texrepeat="1 1" texuniform="true" />
+    <texture name="y2c" type="2d" builtin="gradient" rgb1="1 1 0" rgb2="0 1 1"
+      width="512" height="512" />
+    <material name="y2c" reflectance="0.3" texture="y2c" texrepeat="1 1" texuniform="true" />
+    <texture name="r2b" type="2d" builtin="gradient" rgb1="1 0 0" rgb2="0 0 1"
+      width="512" height="512" />
+    <material name="r2b" reflectance="0.3" texture="r2b" texrepeat="1 1" texuniform="true" />
+  </asset>
+
+  <default>
+    <default class="wall">
+      <geom type="plane" size=".5 .5 .05" />
+    </default>
+  </default>
+
+  <worldbody>
+    <geom name="floor" pos="0 0 0" size="0 0 .25" type="plane" material="plane"
+      condim="3" />
+    <light directional="true" ambient=".3 .3 .3" pos="30 30 30" dir="0 -.5 -1"
+      diffuse=".5 .5 .5" specular=".5 .5 .5" />
+
+    <body pos=".2 0 1.5">
+      <freejoint />
+      <geom type="sphere" size=".1" />
+    </body>
+    <flexcomp type="grid" count="16 16 1" spacing=".1 .1 .1" pos="0 0 1"
+      radius=".001" mass="10" name="plate" dim="2" material="r2b">
+      <contact condim="3" solref="0.01 1" solimp=".95 .99 .0001" />
+      <edge equality="false" damping="10" />
+      <elasticity young="3e5" poisson="0" thickness="1e-2" />
+      <!-- <pin id="0 15 240 255"/> -->
+      <!-- <pin range="0 15"/> -->
+      <!-- <pin grid="7 7"/> -->
+      <pin gridrange="0 0 3 10" />
+    </flexcomp>
+  </worldbody>
+</mujoco>

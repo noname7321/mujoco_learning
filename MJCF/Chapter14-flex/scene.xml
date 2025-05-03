@@ -1,0 +1,70 @@
+<mujoco>
+    <option timestep="0.001" solver="CG" tolerance="1e-6" integrator="implicitfast" />
+    <size memory="200M" />
+
+    <asset>
+        <mesh name="tetrahedron" vertex="0 0 0 1 0 0 0 1 0 0 0 1" />
+        <texture type="skybox" file="../asset/desert.png"
+            gridsize="3 4" gridlayout=".U..LFRB.D.." />
+        <texture name="texsponge" type="2d" file="assets/sponge.png" />
+        <material name="matsponge" texture="texsponge" specular="0.3" />
+        <texture name="plane" type="2d" builtin="checker" rgb1=".1 .1 .1" rgb2=".9 .9 .9"
+            width="512" height="512" mark="cross" markrgb=".8 .8 .8" />
+        <material name="plane" reflectance="0.3" texture="plane" texrepeat="1 1" texuniform="true" />
+        <texture name="y2c" type="cube" builtin="gradient" rgb1="1 1 0" rgb2="0 1 1"
+            width="512" height="512" />
+        <material name="y2c" reflectance="0.3" texture="y2c" texrepeat="1 1" texuniform="true" />
+        <texture name="r2b" type="cube" builtin="gradient" rgb1="1 0 0" rgb2="0 0 1"
+            width="512" height="512" />
+        <material name="r2b" reflectance="0.3" texture="r2b" texrepeat="1 1" texuniform="true" />
+    </asset>
+
+    <worldbody>
+        <geom name="floor" pos="0 0 0" size="0 0 .25" type="plane" material="plane"
+            condim="3" />
+        <light directional="true" ambient=".3 .3 .3" pos="30 30 30" dir="0 -.5 -1"
+            diffuse=".5 .5 .5" specular=".5 .5 .5" />
+
+        <flexcomp type="mesh" file="assets/bunny.obj" pos="0 0 .1" dim="2" euler="90 0 0"
+            radius=".001" rgba="0 .7 .7 1" mass=".05" name="softbunny1" dof="trilinear">
+            <elasticity young="1e3" poisson="0.1" damping="0.001" />
+            <contact selfcollide="none" internal="false" />
+        </flexcomp>
+
+        <flexcomp type="mesh" file="assets/bunny_with_uv.obj" pos=".5 0 .1" dim="2" euler="90 0 0"
+            radius=".001" material="matsponge" mass=".05" name="softbunny2" dof="trilinear">
+            <elasticity young="1e3" poisson="0.1" damping="0.001" />
+            <contact selfcollide="none" internal="false" />
+        </flexcomp>
+
+        <body pos=".5 .5 1" name="softbox1">
+            <freejoint />
+            <geom size=".1" contype="0" conaffinity="0" group="4" mass=".01" />
+            <flexcomp name="softbox1" material="matsponge" type="box" count="7 7 7"
+                spacing=".04 .04 .04"
+                radius="0.01" dim="3" dof="radial" mass=".01">
+                <contact internal="false" selfcollide="none" />
+                <edge equality="true" />
+            </flexcomp>
+        </body>
+
+        <flexcomp type="grid" count="7 7 7"
+            spacing=".04 .04 .04" pos="0 .5 1" dim="3"
+            radius=".001" rgba="0 .7 .7 1" mass="5" name="softbody" dof="trilinear">
+            <elasticity young="1e4" poisson="0.1" damping="0.01" />
+            <contact selfcollide="none" internal="false" />
+        </flexcomp>
+
+        <flexcomp name="cable" type="circle" count="40 1 1" spacing=".15 1 1" dim="1"
+            radius="0.02" pos="0 0 1" rgba="1 0 0 1">
+            <edge equality="true" />
+        </flexcomp>
+
+        <flexcomp name="rope" type="grid" count="40 1 1" spacing=".05 .01 .01" dim="1"
+            radius="0.005" mass="0.01" pos="0 -1.3 1.5" rgba="0 0 1 1">
+            <edge equality="true" />
+        </flexcomp>
+
+    </worldbody>
+
+</mujoco>

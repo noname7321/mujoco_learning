@@ -1,0 +1,43 @@
+<mujoco>
+  <option timestep="0.001" solver="CG" tolerance="1e-6" integrator="implicitfast" />
+
+  <size memory="10M" />
+  <asset>
+    <mesh name="tetrahedron" vertex="0 0 0 1 0 0 0 1 0 0 0 1" />
+    <texture type="skybox" file="../asset/desert.png"
+      gridsize="3 4" gridlayout=".U..LFRB.D.." />
+    <texture name="plane" type="2d" builtin="checker" rgb1=".1 .1 .1" rgb2=".9 .9 .9"
+      width="512" height="512" mark="cross" markrgb=".8 .8 .8" />
+    <material name="plane" reflectance="0.3" texture="plane" texrepeat="1 1" texuniform="true" />
+    <texture name="y2c" type="2d" builtin="gradient" rgb1="1 1 0" rgb2="0 1 1"
+      width="512" height="512" />
+    <material name="y2c" reflectance="0.3" texture="y2c" texrepeat="1 1" texuniform="true" />
+    <texture name="r2b" type="2d" builtin="gradient" rgb1="1 0 0" rgb2="0 0 1"
+      width="512" height="512" />
+    <material name="r2b" reflectance="0.3" texture="r2b" texrepeat="1 1" texuniform="true" />
+  </asset>
+
+  <default>
+    <default class="wall">
+      <geom type="plane" size=".5 .5 .05" />
+    </default>
+  </default>
+
+  <worldbody>
+    <light directional="true" ambient=".3 .3 .3" pos="30 30 30" dir="0 -.5 -1"
+      diffuse=".5 .5 .5" specular=".5 .5 .5" />
+    <body pos="0 0 0.5">
+      <geom type="sphere" size=".7" rgba=".3 .5 .5 1" />
+    </body>
+    <!-- count="2 2 1" spacing="1 1 .1" -->
+    <!-- count="5 5 1" spacing=".5 .5 .1" -->
+    <!-- count="9 9 1" spacing=".25 .25 .1" -->
+    <!-- count="17 17 1" spacing=".125 .125 .1" -->
+    <flexcomp type="grid" count="17 17 1" spacing=".125 .125 .1" pos="0 0 1.5"
+      radius=".001" mass="5" name="plate" dim="2" material="r2b" rgba="1 1 1 1">
+      <!-- <contact condim="3" solref="0.01 1" solimp=".95 .99 .0001"/> -->
+      <edge equality="false" damping="10" />
+      <elasticity young="3e5" poisson="0" thickness="1e-2" />
+    </flexcomp>
+  </worldbody>
+</mujoco>
