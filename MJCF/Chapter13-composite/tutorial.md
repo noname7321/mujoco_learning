@@ -35,8 +35,8 @@
 ```
 &emsp;&emsp;这里可以使用 grid，这是给 1 D和 2 D集合体使用的，可以仿真一节一节类似线的集合。
 注意这里 1 D的仿真的 count。joint的 twist是给这类复合体使用的，也可以不加入
-joint。
-![](../asset/rope.png)
+joint。     
+![](../asset/rope.png)      
 **3. 悬挂鱼网**     
 ```xml
 <composite type="grid" prefix="C" count="10 10 1" spacing="0.1" offset="1 1 2">
@@ -47,8 +47,8 @@ joint。
 </composite>
 ```
 &emsp;&emsp;这里我们还是使用 grid，创造了一个 10 * 10 的网，网格间距为 0. 1 ,通过 pin的作用是
-固定网面上的( 0 , 0 )和( 0 , 9 )点让网悬挂起来。
-![](../asset/grid.png)
+固定网面上的( 0 , 0 )和( 0 , 9 )点让网悬挂起来。         
+![](../asset/grid.png)      
 **4. 布料**         
 ```xml
 <composite type="grid" count="5 5 1" spacing="0.6" offset="0 0 3">
@@ -62,5 +62,5 @@ joint。
 &emsp;&emsp;这里仍然使用的是 grid，但是加入了 skin，这可以使整个网的表面联合起来，形成布料
 的效果，这里的 count和 spacing会影响布的“密度”，密度越大越不容易活动。
 skin中texcoord是影响纹理可视化的，inflate类似厚度，负值可以直接穿过布料。正
-值表示布料比较厚，对于碰撞影响较大。subgrid越高渲染等级越高，建议不要大于 3 。
-![](../asset/cloth.png)
+值表示布料比较厚，对于碰撞影响较大。subgrid越高渲染等级越高，建议不要大于 3 。      
+![](../asset/cloth.png)     
