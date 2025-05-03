@@ -1,5 +1,5 @@
 # composite 复合体 (3.2.7及以前版本)
-![](../asset/composite.png)
+![](../asset/composite.png)             
 &emsp;&emsp;复合体可以仿真，body集合，软体，布料，鱼网等。本质上是一堆微小几何体组合形成的新型结构。        
 **prefix="name"**       
 &emsp;&emsp;和name相同也就是names，prefix表示整个复合体的命名索引，具体复合体中的body名称为name+B+（坐标），比如坐标为（1,2）那body的name就是nameB1_2）     
