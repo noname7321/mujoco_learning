@@ -49,10 +49,10 @@
         <muscle name="A" tendon="A" ctrlrange="-.5 .5"/>
     </actuator>
 
-    <keyframe>
-        <key qpos="0.03 0" mpos="0 0 .5"/>
-        <key qpos="0.06 0" />
+    <!-- <keyframe>
+        <key qpos="0.8 0.2" mpos="0 0 .5" mquat="0.7 0.2 0.7 0"/>
+        <key act="10"/>
         <key qpos="0.09 0" />
-    </keyframe>
-    <!-- <include file="key.xml"/> -->
+    </keyframe> -->
+    <include file="key.xml"/>
 </mujoco>

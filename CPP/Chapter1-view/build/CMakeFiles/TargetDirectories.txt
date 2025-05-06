@@ -1,0 +1,3 @@
+/home/albusgive/mujoco_learning/CPP/Chapter1-view/build/CMakeFiles/basic.dir
+/home/albusgive/mujoco_learning/CPP/Chapter1-view/build/CMakeFiles/edit_cache.dir
+/home/albusgive/mujoco_learning/CPP/Chapter1-view/build/CMakeFiles/rebuild_cache.dir
