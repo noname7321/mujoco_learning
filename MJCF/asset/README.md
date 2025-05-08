@@ -1142,7 +1142,7 @@ mj_step(m, d);
 接口介绍：
 `MJAPI int mj_name2id(const mjModel* m, int type, const char* name);`
 通过name获取实体的id，参数二，type是在mjmodel.h文件中的mjtObj中定义，这个是要获取id的实体类型。一下是部分type类型枚举，在mjtObj中找到。
-![](getsensor.png)
+![](enum_mjtobj.png)
 &emsp;&emsp;我们再在mjData结构体中能找到sensordata这个指针，通过传感器索引就能找到对应的传感器数据。
 ![](userdata.png)
 sensordata的索引需要依靠mjData的sensor_adr获取，这个可以使用sensor的id。

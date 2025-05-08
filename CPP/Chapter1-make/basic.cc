@@ -35,7 +35,7 @@ double lasty = 0;
 
 
 // keyboard callback
-void keyboard(GLFWwindow* window, int key, int scancode, int act, int mods) {
+void keyboard(GLFWwindow* window, int key, int scancdataode, int act, int mods) {
   // backspace: reset simulation
   if (act==GLFW_PRESS && key==GLFW_KEY_BACKSPACE) {
     mj_resetData(m, d);
