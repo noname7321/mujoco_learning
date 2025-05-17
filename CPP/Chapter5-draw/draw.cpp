@@ -1,13 +1,12 @@
-#include "opencv4/opencv2/opencv.hpp"
-#include <chrono>
 #include <cmath>
 #include <cstdio>
 #include <cstring>
-#include <iostream>
-#include <thread>
 
 #include <GLFW/glfw3.h>
+#include <mujoco/mjvisualize.h>
 #include <mujoco/mujoco.h>
+
+#include <iostream>
 
 // MuJoCo data structures
 mjModel *m = NULL; // MuJoCo model
@@ -25,7 +24,8 @@ double lastx = 0;
 double lasty = 0;
 
 // keyboard callback
-void keyboard(GLFWwindow *window, int key, int scancode, int act, int mods) {
+void keyboard(GLFWwindow *window, int key, int scancdataode, int act,
+              int mods) {
   // backspace: reset simulation
   if (act == GLFW_PRESS && key == GLFW_KEY_BACKSPACE) {
     mj_resetData(m, d);
@@ -88,7 +88,6 @@ void scroll(GLFWwindow *window, double xoffset, double yoffset) {
   mjv_moveCamera(m, mjMOUSE_ZOOM, 0, -0.05 * yoffset, &scn, &cam);
 }
 
-
 std::vector<float> get_sensor_data(const mjModel *model, const mjData *data,
                                    const std::string &sensor_name) {
   int sensor_id = mj_name2id(model, mjOBJ_SENSOR, sensor_name.c_str());
@@ -104,11 +103,36 @@ std::vector<float> get_sensor_data(const mjModel *model, const mjData *data,
   return sensor_data;
 }
 
+/*--------绘制直线--------*/
+void draw_line(mjvScene *scn, mjtNum *from, mjtNum *to, mjtNum width,
+               float *rgba) {
+  scn->ngeom += 1;
+  mjvGeom *geom = scn->geoms + scn->ngeom - 1;
+  mjv_initGeom(geom, mjGEOM_SPHERE, NULL, NULL, NULL, rgba);
+  mjv_connector(geom, mjGEOM_LINE, width, from, to);
+}
+
+/*--------绘制箭头--------*/
+void draw_arrow(mjvScene *scn, mjtNum *from, mjtNum *to, mjtNum width,
+                float rgba[4]) {
+  scn->ngeom += 1;
+  mjvGeom *geom = scn->geoms + scn->ngeom - 1;
+  mjv_initGeom(geom, mjGEOM_SPHERE, NULL, NULL, NULL, rgba);
+  mjv_connector(geom, mjGEOM_ARROW, width, from, to);
+}
+
+/*--------绘制几何体--------*/
+void draw_geom(mjvScene *scn, int type, mjtNum *size, mjtNum *pos, mjtNum *mat,
+               float rgba[4]) {
+  scn->ngeom += 1;
+  mjvGeom *geom = scn->geoms + scn->ngeom - 1;
+  mjv_initGeom(geom, type, size, pos, mat, rgba);
+}
+
 // main function
 int main(int argc, const char **argv) {
-
   char error[1000] = "Could not load binary model";
-  m = mj_loadXML("../../../API-MJC/pointer.xml", 0, error, 1000);
+  m = mj_loadXML("../../../API-MJC/mecanum.xml", 0, error, 1000);
 
   // make data
   d = mj_makeData(m);
@@ -139,70 +163,15 @@ int main(int argc, const char **argv) {
   glfwSetMouseButtonCallback(window, mouse_button);
   glfwSetScrollCallback(window, scroll);
 
-  //相机初始化
-  mjvCamera cam2; // bsae中全局变量
-  int camID = mj_name2id(m, mjOBJ_CAMERA, "this_camera");
-  if (camID == -1) {
-    std::cerr << "Camera not found" << std::endl;
-  } else {
-    std::cout << "Camera ID: " << camID << std::endl;
-    // 获取摄像机的位置
-    const double *cam_pos = &m->cam_pos[3 * camID];
-    std::cout << "Camera Position: (" << cam_pos[0] << ", " << cam_pos[1]
-              << ", " << cam_pos[2] << ")" << std::endl;
-    // 获取摄像机的视野角度
-    double cam_fovy = m->cam_fovy[camID];
-    std::cout << "Camera FOV Y: " << cam_fovy << " degrees" << std::endl;
-    // 给相机初始化
-    mjv_defaultCamera(&cam2);
-    // 这里给相机id和类型即可
-    cam2.fixedcamid = camID;
-    cam2.type = mjCAMERA_FIXED;
-  }
-
-  auto step_start = std::chrono::high_resolution_clock::now();
+  float cnt = 0;
+  // run main loop, target real-time simulation and 60 fps rendering
   while (!glfwWindowShouldClose(window)) {
 
-    d->ctrl[1] = 2;
+    d->ctrl[0] = std::sin(cnt);
+    d->ctrl[1] = std::cos(cnt);
+    d->ctrl[2] = std::sin(cnt);
     mj_step(m, d);
-
-    auto data = get_sensor_data(m, d, "linvel");
-    std::cout<<"data:";
-    for(auto d:data)
-      std::cout<<"  "<<d;
-    std::cout<<std::endl;
-
-    // 设置图像大小,要小于opengl窗口大小,否则会图像出现问题
-    int width = 640;
-    int height = 480;
-    mjrRect viewport2 = {0, 0, width, height};
-    // mujoco更新渲染
-    mjv_updateCamera(m, d, &cam2, &scn);
-    mjr_render(viewport2, &scn, &con);
-    // 渲染完成读取图像
-    unsigned char *rgbBuffer = new unsigned char[width * height * 3];
-    float *depthBuffer = new float[width * height];
-    mjr_readPixels(rgbBuffer, depthBuffer, viewport2, &con);
-    cv::Mat image(height, width, CV_8UC3, rgbBuffer);
-    // 反转图像以匹配OpenGL渲染坐标系
-    cv::flip(image, image, 0);
-    // 颜色顺序转换这样要使用bgr2rgb而不是rgb2bgr
-    cv::cvtColor(image, image, cv::COLOR_BGR2RGB);
-    cv::imshow("Image", image);
-    cv::waitKey(1);
-    // 释放内存
-    delete[] rgbBuffer;
-    delete[] depthBuffer;
-
-    //同步时间
-    auto current_time = std::chrono::high_resolution_clock::now();
-    double elapsed_sec =
-        std::chrono::duration<double>(current_time - step_start).count();
-    double time_until_next_step = m->opt.timestep * 5 - elapsed_sec;
-    if (time_until_next_step > 0.0) {
-      auto sleep_duration = std::chrono::duration<double>(time_until_next_step);
-      std::this_thread::sleep_for(sleep_duration);
-    }
+    cnt += 0.001;
 
     // get framebuffer viewport
     mjrRect viewport = {0, 0, 0, 0};
@@ -210,7 +179,46 @@ int main(int argc, const char **argv) {
 
     // update scene and render
     mjv_updateScene(m, d, &opt, NULL, &cam, mjCAT_ALL, &scn);
+
+    /*--------3D绘制--------*/
+    mjtNum from[3] = {0, 1, 1};
+    mjtNum to[3] = {0, 3, 4};
+    float color[4] = {0, 1, 0, 1};
+    draw_line(&scn, from, to, 20, color);
+    mjtNum to2[3] = {0, -1, 1};
+    float color2[4] = {0, 0, 1, 1};
+    draw_arrow(&scn, from, to2, 0.1, color2);
+
+    mjtNum size[3] = {0.1, 0, 0};
+    mjtNum pos[3] = {0, 0, 1.0};
+    mjtNum mat[9] = {1, 0, 0, 0, 1, 0, 0, 0, 1};//坐标系，空间向量
+    draw_geom(&scn, mjGEOM_SPHERE, size, pos, mat, color);
+    /*--------3D绘制--------*/
+
+    /*--------速度跟踪--------*/
+    auto lin_vel = get_sensor_data(m, d, "base_lin_vel");
+    auto base_pos = get_sensor_data(m, d, "base_pos");
+    for (int i = 0; i < 3; i++) {
+      from[i] = base_pos[i];
+      to[i] = base_pos[i] + lin_vel[i] * 5;
+    }
+    from[2] += 0.5;
+    to[2] += 0.5;
+    float color3[4] = {0.3, 0.6, 0.3, 0.9};
+    draw_arrow(&scn, from, to, 0.1, color3);
+    /*--------速度跟踪--------*/
+
     mjr_render(viewport, &scn, &con);
+
+    /*--------2D绘制--------*/
+    mjr_text(mjFONT_NORMAL, "Albusgive", &con, 0, 0.9, 1, 0, 1);
+    mjrRect viewport2 = {50, 100, 50, 50};
+    mjr_overlay(mjFONT_NORMAL, mjGRID_TOPLEFT, viewport, "github", "Albusgive",
+                &con);
+    mjr_rectangle(viewport2, 0.5, 0, 1, 0.6);
+    mjrRect viewport3 = {100, 200, 150, 50};
+    mjr_label(viewport3, mjFONT_NORMAL, "Albusgive", 0, 1, 1, 1, 0, 0, 0, &con);
+    /*--------2D绘制--------*/
 
     // swap OpenGL buffers (blocking call due to v-sync)
     glfwSwapBuffers(window);
