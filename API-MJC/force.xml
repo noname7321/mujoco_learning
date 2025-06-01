@@ -1,0 +1,60 @@
+<mujoco>
+    <compiler angle="radian" meshdir="meshes" autolimits="true" />
+    <!-- density="1.225" viscosity="1.8e-5" -->
+    <option timestep="0.002" gravity="0 0 -9.81" integrator="implicitfast" />
+    <asset>
+        <mesh name="tetrahedron" vertex="0 0 0 1 0 0 0 1 0 0 0 1" />
+        <texture type="skybox" file="../MJCF/asset/desert.png"
+            gridsize="3 4" gridlayout=".U..LFRB.D.." />
+        <texture name="plane" type="2d" builtin="checker" rgb1=".1 .1 .1" rgb2=".9 .9 .9"
+            width="512" height="512" mark="cross" markrgb=".8 .8 .8" />
+        <material name="plane" reflectance="0.3" texture="plane" texrepeat="1 1" texuniform="true" />
+    </asset>
+
+    <worldbody>
+        <geom name="floor" pos="0 0 0" size="0 0 .25" type="plane" material="plane"
+            condim="3" />
+        <light directional="true" ambient=".3 .3 .3" pos="30 30 30" dir="0 -.5 -1"
+            diffuse=".5 .5 .5" specular=".5 .5 .5" />
+
+        <site type="ellipsoid" pos="0 1 0.2" size="10 0.01 0.01" rgba=".7 .7 .7 1" />
+        <body name="sphere" pos="0 1 0.2">
+            <joint name="lin_jnt" type="slide" axis="1 0 0" range="-10 10" damping="0.0"
+                frictionloss="1.0" stiffness="1.0" />
+            <geom type="sphere" mass="1" size="0.1" rgba=".2 .6 .6 1" />
+        </body>
+
+        <body name="base" pos="0 0 0">
+            <geom type="cylinder" mass="100" size="0.05 0.5" rgba=".2 .2 .2 1" />
+            <body name="pointer" pos="0 0 0.55">
+                <joint type="hinge" name="pivot" axis="0 0 1" damping="0.0"
+                    frictionloss="0.1" stiffness="1.0" />
+                <site name="force_torque" size="0.01" rgba="0 1 0 1" />
+                <geom type="capsule" mass="0.1" fromto="0 0 0 0.2 0 0" size="0.01"
+                    rgba="0.8 0.2 0.2 0.5" />
+            </body>
+        </body>
+
+        <body name="box" pos="1 0 0.2">
+            <freejoint />
+            <geom type="box" mass="1" size="0.1 0.1 0.1" rgba=".5 .4 .3 .5" />
+            <site name="red_point" pos="0.1 0.1 0.1" rgba="1 0 0 .8" size="0.01"/>
+        </body>
+    </worldbody>
+
+    <actuator>
+        <motor name="lin_force" joint="lin_jnt" gear="1" />
+        <motor name="motor" joint="pivot" gear="1" />
+    </actuator>
+
+    <sensor>
+        <framelinacc name="lin_acc" objtype="body" objname="sphere" />
+        <framelinvel name="lin_vel" objtype="body" objname="sphere" />
+        <framepos name="lin_pos" objtype="body" objname="sphere" />
+        <jointpos joint="pivot" name="pivot_pos"/>
+        <jointvel joint="pivot" name="pivot_vel"/>
+        <force name="force" site="force_torque" />
+        <torque name="torque" site="force_torque" />
+    </sensor>
+
+</mujoco>
