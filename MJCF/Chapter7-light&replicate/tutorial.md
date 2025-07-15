@@ -17,8 +17,8 @@
 **pos="0 0 0"**     
 **dir="0 0 0"**     
 &emsp;&emsp;方向        
-**attenuation="0 0 0"**     
-&emsp;&emsp;衰减系数,置 0 和 1 为没有衰减。[0,1]范围内越大越衰减      
+**attenuation="1 0 0"**     
+&emsp;&emsp;衰减系数,[a,b,c],I(d)=I_0/a+bd+cd^2。可以看到a,b,c越大，衰减越明显。        
 **cutoff="0"**      
 &emsp;&emsp;聚光灯截止（最大）角度，角度制      
 **exponent="0"**        
