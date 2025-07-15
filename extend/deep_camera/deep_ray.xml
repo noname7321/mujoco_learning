@@ -1,0 +1,58 @@
+<mujoco>
+    <compiler angle="radian" meshdir="meshes" autolimits="true" />
+    <!-- density="1.225" viscosity="1.8e-5" -->
+    <option timestep="0.005" gravity="0 0 -9.81" integrator="implicitfast" />
+    <asset>
+        <mesh name="tetrahedron" vertex="0 0 0 1 0 0 0 1 0 0 0 1" />
+        <texture type="skybox" file="../../MJCF/asset/desert.png"
+            gridsize="3 4" gridlayout=".U..LFRB.D.." />
+        <texture name="plane" type="2d" builtin="checker" rgb1=".1 .1 .1" rgb2=".9 .9 .9"
+            width="512" height="512" mark="cross" markrgb=".8 .8 .8" />
+        <material name="plane" reflectance="0.3" texture="plane" texrepeat="1 1" texuniform="true" />
+    </asset>
+
+    <worldbody>
+        <geom name="floor" pos="0 0 0" size="0 0 .25" type="plane" material="plane"
+            condim="3" />
+        <light directional="true" ambient=".3 .3 .3" pos="30 30 30" dir="0 -.5 -1"
+            diffuse=".5 .5 .5" specular=".5 .5 .5" />
+
+        <camera name="look_box" mode="targetbody" target="box3" pos="0 0 0.2" fovy="45" />
+        <camera name="cam2" mode="fixed" euler="2 1 0.1" pos="0 0 3" focal="4 4" sensorsize="4 4" resolution="640 640"/>
+        <body pos="-3 0 2" >
+            <!-- <freejoint/> -->
+            <!-- <geom size="0.1" rgba=".3 .4 .5 1" pos="0 0 0.15"/> -->
+            <camera name="look_box2" mode="targetbody" target="box3" focal="2 4" sensorsize="4 4" resolution="1280 640"/>
+        </body>
+
+        <site rgba="1 0 0 1" pos="1 0 0" size="0.05"/>
+        <site rgba="0 1 0 1" pos="0 1 0" size="0.05"/>
+        <!-- <site rgba="0 0 1 1" pos="0 0 1" size="0.05"/> -->
+
+        <body name="box1" pos="0 1 1">
+            <freejoint />
+            <geom name="box1" type="box" mass="1" size="0.2 0.2 0.2" rgba=".5 .4 .3 1" />
+        </body>
+
+        <body name="box2" pos="2 0 1">
+            <freejoint />
+            <geom name="box2" type="box" mass="1" size="0.2 0.2 0.2" rgba=".3 .4 .5 1" />
+        </body>
+
+        <body name="box3" pos="2 0 5">
+            <freejoint />
+            <geom name="box3" type="box" mass="1" size="0.2 0.2 0.2" rgba=".6 .5 .4 1" />
+        </body>
+
+        <body name="box4" pos="0 -2 1">
+            <freejoint />
+            <geom name="box4" type="box" mass="1" size="0.2 0.2 0.2" rgba=".3 .2 .1 1" />
+        </body>
+
+        <body name="box5" pos="-1 0 1">
+            <freejoint />
+            <geom name="box5" type="box" mass="1" size="0.2 0.2 0.2" rgba=".6 .7 .8 1" />
+        </body>
+    </worldbody>
+
+</mujoco>

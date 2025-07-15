@@ -35,3 +35,6 @@ cd bin/
  或者加载模型
  `python -m mujoco.viewer --mjcf=/path/to/some/mjcf.xml` or
  `python3 -m mujoco.viewer --mjcf=/path/to/some/mjcf.xml`
+
+遇到`GLIBCXX_x.x.xx' not found`类似问题可尝试更新libstdcxx
+`conda install -c conda-forge libstdcxx-ng`
