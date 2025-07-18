@@ -183,7 +183,7 @@ int main(int argc, const char **argv) {
   opt.flags[mjtVisFlag::mjVIS_CAMERA] = true;
   // opt.flags[mjtVisFlag::mjVIS_CONVEXHULL] = true;
   // opt.flags[mjtVisFlag::mjVIS_COM] = true;
-  // opt.label = mjtLabel::mjLABEL_BODY;
+  opt.label = mjtLabel::mjLABEL_GEOM;
   // opt.frame = mjtFrame::mjFRAME_WORLD;
   /*--------可视化配置--------*/
 
@@ -200,12 +200,10 @@ int main(int argc, const char **argv) {
 
   #define box_num  5
   int box_idx[5];
+  mjtNum *boxs_pos[box_num];
   for (int i = 0; i < 5; i++) {
     std::string geom_name = "box" + std::to_string(i + 1);
     box_idx[i] = mj_name2id(m, mjOBJ_GEOM, geom_name.c_str());
-  }
-  mjtNum *boxs_pos[box_num];
-  for (int i = 0; i < 5; i++) {
     boxs_pos[i] = d->geom_xpos + box_idx[i] * 3;
   }
 
@@ -239,14 +237,10 @@ int main(int argc, const char **argv) {
     }
     int geomid[1];
     mjtNum x1 = mj_ray(m, d, cam_pos, vec1, NULL, 1, -1, geomid);
-    mjtNum x2 = mj_ray(m, d, cam_pos, vec1, NULL, 1, -1, geomid);
-    mjtNum distance1 = 0.0, distance2 = 0.0;
-    for (int i = 0; i < 3; i++) {
-      distance1 += vec1[i] * vec1[i];
-      distance2 += vec2[i] * vec2[i];
-    }
-    distance1 = std::sqrt(distance1) * x1;
-    distance2 = std::sqrt(distance2) * x2;
+    mjtNum x2 = mj_ray(m, d, cam_pos, vec2, NULL, 1, -1, geomid);
+    mjtNum distance1 = mju_norm3(vec1) * x1;
+    mjtNum distance2 = mju_norm3(vec2) * x2;
+    // std::cout << "x1: " << x1 << "  x2: " << x2 << std::endl;
     // std::cout << "distance1: " << distance1 << "  distance2: " << distance2
     //           << std::endl;
     /*--------单射线--------*/
@@ -269,10 +263,7 @@ int main(int argc, const char **argv) {
         dist[i] = -1;
         continue;
       }
-      for (int j = 0; j < 3; j++) {
-        dist[i] += num_vec[i][j] * num_vec[i][j];
-      }
-      dist[i] = std::sqrt(dist[i]) * dist_ratio[i];
+      dist[i] = mju_norm3(num_vec[i]) * dist_ratio[i];
     }
     std::cout << "multiRay distance: ";
     for (int i = 0; i < box_num; i++) {
