@@ -52,13 +52,13 @@ def get_image(w,h,stereo=mujoco.mjtStereo.mjSTEREO_NONE):
 
 with mujoco.viewer.launch_passive(m, d) as viewer:
   '''--------可视化配置--------'''
-  viewer.opt.flags[mujoco.mjtVisFlag.mjVIS_CAMERA]
+  viewer.opt.flags[mujoco.mjtVisFlag.mjVIS_CAMERA] = True
   '''--------可视化配置--------'''
   
   '''--------场景渲染--------'''
-#   scene.flags[mujoco.mjtRndFlag.mjRND_WIREFRAME] = True
-  scene.flags[mujoco.mjtRndFlag.mjRND_SEGMENT] = True #随机颜色分割
-  scene.flags[mujoco.mjtRndFlag.mjRND_IDCOLOR] = True #segid
+  # scene.flags[mujoco.mjtRndFlag.mjRND_WIREFRAME] = True
+  # scene.flags[mujoco.mjtRndFlag.mjRND_SEGMENT] = True #随机颜色分割
+  # scene.flags[mujoco.mjtRndFlag.mjRND_IDCOLOR] = True #segid
   bunny_id = mujoco.mj_name2id(m, mujoco.mjtObj.mjOBJ_GEOM, "bunny")
   '''--------场景渲染--------'''
   

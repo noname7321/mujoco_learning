@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "force"
+			"path" : "touchpad"
 		}
 	],
 	"backtrace" : 1,
@@ -63,7 +63,7 @@
 			[
 				{
 					"backtrace" : 3,
-					"path" : "/home/albusgive/mujoco_learning/CPP/Chapter6-force/simulate"
+					"path" : "/home/albusgive/mujoco_learning/extend/touch/C++/simulate"
 				},
 				{
 					"backtrace" : 2,
@@ -79,11 +79,12 @@
 			"language" : "CXX",
 			"sourceIndexes" : 
 			[
-				0
+				0,
+				1
 			]
 		}
 	],
-	"id" : "force::@6890427a1f51a3e7e1df",
+	"id" : "touchpad::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -102,7 +103,7 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "/opt/mujoco/lib/libmujoco.so.3.3.2",
+				"fragment" : "/opt/mujoco/lib/libmujoco.so.3.3.4",
 				"role" : "libraries"
 			},
 			{
@@ -203,8 +204,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "force",
-	"nameOnDisk" : "force",
+	"name" : "touchpad",
+	"nameOnDisk" : "touchpad",
 	"paths" : 
 	{
 		"build" : ".",
@@ -216,7 +217,8 @@
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				0
+				0,
+				1
 			]
 		}
 	],
@@ -225,7 +227,13 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "force.cpp",
+			"path" : "touchpad.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "mujoco_thread.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

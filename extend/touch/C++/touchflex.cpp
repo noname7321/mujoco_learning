@@ -22,7 +22,7 @@ public:
     // opt.flags[mjtVisFlag::mjVIS_CAMERA] = true;
     // opt.flags[mjtVisFlag::mjVIS_CONVEXHULL] = true;
     // opt.flags[mjtVisFlag::mjVIS_COM] = true;
-    // opt.label = mjtLabel::mjLABEL_BODY;
+    opt.label = mjtLabel::mjLABEL_BODY;
     // opt.frame = mjtFrame::mjFRAME_WORLD;
     /*--------可视化配置--------*/
 

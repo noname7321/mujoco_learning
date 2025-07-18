@@ -16,15 +16,15 @@
             condim="3" />
         <light directional="true" ambient=".3 .3 .3" pos="30 30 30" dir="0 -.5 -1"
             diffuse=".5 .5 .5" specular=".5 .5 .5" />
-        <body pos="0.19 0.19 0.5">
+        <!-- <body pos="0.1 0.1 0.5">
             <freejoint />
             <geom size="0.01" type="sphere" pos="0.02 0.02 0.02" mass="1"/>
             <geom size="0.05" type="sphere" mass="1"/>
-        </body>
-        <!-- <body pos="0.19 0.19 1">
+        </body> -->
+        <body pos="0.19 0.19 1">
             <freejoint />
             <geom type="box" size="0.1 0.1 0.1" mass="50"/>
-        </body> -->
+        </body>
 
         <!-- <body>
             <freejoint />

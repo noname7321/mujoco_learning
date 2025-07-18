@@ -170,11 +170,11 @@ int main(int argc, const char **argv) {
 
   /*--------可视化配置--------*/
   // opt.flags[mjtVisFlag::mjVIS_CONTACTPOINT] = true;
-  opt.flags[mjtVisFlag::mjVIS_CAMERA] = true;
+  // opt.flags[mjtVisFlag::mjVIS_CAMERA] = true;
   // opt.flags[mjtVisFlag::mjVIS_CONVEXHULL] = true;
   // opt.flags[mjtVisFlag::mjVIS_COM] = true;
   // opt.label = mjtLabel::mjLABEL_BODY;
-  // opt.frame = mjtFrame::mjFRAME_WORLD;
+  // opt.frame = mjtFrame::mjFRAME_BODY;
   /*--------可视化配置--------*/
 
 
@@ -186,7 +186,7 @@ int main(int argc, const char **argv) {
   /*--------场景渲染--------*/
 
   /*--------单/双目渲染--------*/
-  // scn.stereo = mjtStereo::mjSTEREO_SIDEBYSIDE;
+  scn.stereo = mjtStereo::mjSTEREO_SIDEBYSIDE;
   /*--------单/双目渲染--------*/
 
   //相机初始化

@@ -207,8 +207,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "/home/albusgive/mujoco_learning/CPP/Chapter6-force/build",
-		"source" : "/home/albusgive/mujoco_learning/CPP/Chapter6-force"
+		"build" : "/home/albusgive/mujoco_learning/extend/touch/C++/build",
+		"source" : "/home/albusgive/mujoco_learning/extend/touch/C++"
 	},
 	"version" : 
 	{
