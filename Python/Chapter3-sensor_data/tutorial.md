@@ -31,7 +31,7 @@ def get_sensor_data(sensor_name):
 MJAPI void mjr_readPixels(unsigned char* rgb, float* depth,
 mjrRect viewport, const mjrContext* con);
 ```
-将渲染画面转成rgb图像。
+将渲染画面转成rgb图像和深度图像。
 **获取相机视角演示：**
 初始化:
 ```python

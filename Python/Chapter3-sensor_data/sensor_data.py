@@ -45,15 +45,35 @@ def get_image(w,h):
     mujoco.mjr_render(viewport, scene, context)
     # 读取 RGB 数据（格式为 HWC, uint8）
     rgb = np.zeros((h, w, 3), dtype=np.uint8)
-    mujoco.mjr_readPixels(rgb, None, viewport, context)
+    depth = np.zeros((h, w), dtype=np.float64)
+    mujoco.mjr_readPixels(rgb, depth, viewport, context)
     cv_image = cv2.cvtColor(np.flipud(rgb), cv2.COLOR_RGB2BGR)
-    return cv_image
+
+    # 参数设置
+    min_depth_m = 0.0  # 最小深度（0米）
+    max_depth_m = 8.0  # 最大深度（8米）
+    near_clip = 0.1    # 近裁剪面（米）
+    far_clip = 50.0    # 远裁剪面（米）
+    # 将非线性深度缓冲区值转换为线性深度（米）
+    # 公式: linear_depth = far * near / (far - (far - near) * depth)
+    linear_depth_m = far_clip * near_clip / (far_clip - (far_clip - near_clip) * depth)
+    # 裁剪深度到0-8米范围
+    depth_clipped = np.clip(linear_depth_m, min_depth_m, max_depth_m)
+    # 映射0-8米到0-255像素值（距离越小越亮）
+    # 反转映射：距离越小值越大（越亮）
+    inverted_depth = max_depth_m - depth_clipped
+    # 计算缩放因子：255/(max_depth_m - min_depth_m)
+    scale = 255.0 / (max_depth_m - min_depth_m)
+    depth_visual = (inverted_depth * scale).astype(np.uint8)
+    # 翻转图像（MuJoCO坐标系到OpenCV坐标系）
+    depth_visual = np.flipud(depth_visual)
+    return cv_image,depth_visual
 
 
 with mujoco.viewer.launch_passive(m, d) as viewer:
   # Close the viewer automatically after 30 wall-seconds.
   start = time.time()
-  while viewer.is_running() and time.time() - start < 30:
+  while viewer.is_running():
     
     d.ctrl[1] = 2
     
@@ -62,10 +82,11 @@ with mujoco.viewer.launch_passive(m, d) as viewer:
     
     # sensor_data = get_sensor_data("ang_vel")
     # print("sensor_data",sensor_data)
-    print(d.sensor("ang_vel").data)
+    # print(d.sensor("ang_vel").data)
     
-    img = get_image(640,480)
+    img,depth_img = get_image(640,480)
     cv2.imshow("img",img)
+    cv2.imshow("depth_img",depth_img)
     cv2.waitKey(1)
 
 

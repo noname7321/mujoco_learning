@@ -1,7 +1,7 @@
 <mujoco>
-    <compiler angle="radian" meshdir="meshes" autolimits="true" />
+    <compiler angle="radian" autolimits="true" />
     <!-- density="1.225" viscosity="1.8e-5" -->
-    <option timestep="0.005" gravity="0 0 -9.81" integrator="implicitfast" />
+    <option timestep="0.01" gravity="0 0 -9.81" integrator="implicitfast" />
     <asset>
         <mesh name="tetrahedron" vertex="0 0 0 1 0 0 0 1 0 0 0 1" />
         <texture type="skybox" file="../../MJCF/asset/desert.png"
@@ -9,6 +9,7 @@
         <texture name="plane" type="2d" builtin="checker" rgb1=".1 .1 .1" rgb2=".9 .9 .9"
             width="512" height="512" mark="cross" markrgb=".8 .8 .8" />
         <material name="plane" reflectance="0.3" texture="plane" texrepeat="1 1" texuniform="true" />
+        <mesh file="../../API-MJC/asset/bunny.obj" />
     </asset>
 
     <worldbody>
@@ -19,15 +20,20 @@
 
         <camera name="look_box" mode="targetbody" target="box3" pos="0 0 0.2" fovy="45" />
         <camera name="cam2" mode="fixed" euler="2 1 0.1" pos="0 0 3" focal="4 4" sensorsize="4 4" resolution="640 640"/>
-        <body pos="-3 0 2" >
+        <body pos="-2 0 1" >
             <!-- <freejoint/> -->
             <!-- <geom size="0.1" rgba=".3 .4 .5 1" pos="0 0 0.15"/> -->
-            <camera name="look_box2" mode="targetbody" target="box3" focal="2 4" sensorsize="4 4" resolution="1280 640"/>
+            <camera name="look_box2" mode="targetbody" target="box3" focal="4.5 8" sensorsize="8 8" resolution="1280 720"/>
         </body>
 
         <site rgba="1 0 0 1" pos="1 0 0" size="0.05"/>
         <site rgba="0 1 0 1" pos="0 1 0" size="0.05"/>
         <!-- <site rgba="0 0 1 1" pos="0 0 1" size="0.05"/> -->
+
+        <body name="bunny" pos="1 0 .1" euler="1.57 0 0">
+            <freejoint />
+            <geom name="bunny" type="mesh" mesh="bunny"/>
+        </body>
 
         <body name="box1" pos="0 1 1">
             <freejoint />

@@ -36,7 +36,7 @@ std::vector<float> get_sensor_data(const mjModel *model, const mjData *data,
 MJAPI void mjr_readPixels(unsigned char* rgb, float* depth,
 mjrRect viewport, const mjrContext* con);
 ```
-将渲染画面转成rgb图像。
+将渲染画面转成rgb图像和深度图像。
 获取相机视角演示：
 相机初始化:
 ```C++
@@ -73,7 +73,7 @@ mjv_updateCamera(m, d, &cam2, &scn);
 mjr_render(viewport2, &scn, &con);
 // 渲染完成读取图像
 unsigned char *rgbBuffer = new unsigned char[width * height * 3];
-float *depthBuffer = new float[width * height];
+float *depthBuffer = new float[width * height]; //深度图
 mjr_readPixels(rgbBuffer, depthBuffer, viewport2, &con);
 cv::Mat image(height, width, CV_8UC3, rgbBuffer);
 // 反转图像以匹配OpenGL渲染坐标系

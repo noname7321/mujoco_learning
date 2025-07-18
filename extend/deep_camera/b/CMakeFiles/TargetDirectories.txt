@@ -1,3 +1,0 @@
-/home/albusgive/mujoco_learning/extend/deep_camera/b/CMakeFiles/ray.dir
-/home/albusgive/mujoco_learning/extend/deep_camera/b/CMakeFiles/edit_cache.dir
-/home/albusgive/mujoco_learning/extend/deep_camera/b/CMakeFiles/rebuild_cache.dir

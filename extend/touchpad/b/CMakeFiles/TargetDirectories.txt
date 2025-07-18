@@ -1,3 +1,0 @@
-/home/albusgive/mujoco_learning/extend/touchpad/b/CMakeFiles/touchpad.dir
-/home/albusgive/mujoco_learning/extend/touchpad/b/CMakeFiles/edit_cache.dir
-/home/albusgive/mujoco_learning/extend/touchpad/b/CMakeFiles/rebuild_cache.dir

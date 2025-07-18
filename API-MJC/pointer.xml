@@ -24,8 +24,12 @@
                 <geom type="capsule" mass="0.01" fromto="0 0 0 0.2 0 0" size="0.01"
                     rgba="0.8 0.2 0.2 0.5" />
                     <site name="imu" pos="0.05 0 0.02" size="0.02" rgba="0 0 1 .5"/>
-                    <camera name="this_camera" mode="fixed" pos="0.3 0 0.05" euler="0 1.57 1.57" principalpixel="50 50" focalpixel="1080 1920" sensorsize="4 4" resolution="1280 1080"/>
+                    <camera name="this_camera" mode="fixed" pos="0.4 0 0.1" euler="0 1.2 1.57" principalpixel="50 50" focalpixel="1080 1920" sensorsize="4 4" resolution="1280 1080"/>
             </body>
+        </body>
+
+        <body>
+            
         </body>
     </worldbody>
 

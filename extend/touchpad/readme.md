@@ -1,4 +1,0 @@
-# Deep Camera
-## C++
-
-## Python
