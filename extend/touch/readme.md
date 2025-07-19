@@ -1,6 +1,9 @@
 # Touch Pad/Flex
 刚性，柔性材料触摸实现
 非插件方式实现，实现参考：mujoco源码engine_sensor.c中mjSENS_TOUCH部分
+## mujoco version
+touch_pad:mujoco3.x.x
+touch_flex:大于mujoco3.3.1，其中elastic2d参数在3.3.3之后版本使用
 ## MJCF
 ### touch pad
 用replicate复制body然后添加forcec传感器，演示见touch_pad.xml

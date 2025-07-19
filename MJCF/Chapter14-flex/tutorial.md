@@ -27,6 +27,8 @@
 &emsp;&emsp;该量缩放由 Young 模量定义的刚度，以生成阻尼矩阵。           
 **thickness="-1"**        
 &emsp;&emsp;壳厚，长度单位;仅适用于二手 2D 弯曲。用于缩放拉伸刚度。 此厚度可以设置为等于半径的 2 倍，以匹配几何体， 但会单独显示，因为半径可能受到与碰撞检测相关的注意事项的限制。  
+**elastic2d="[none, bend, stretch, both]"**
+&emsp;&emsp;该参数在3.3.3及以后版本使用，对 2D 弯曲的被动力的弹性贡献。“none”： 无， “bend”： 仅弯曲， “stretch”： 仅拉伸， “both”： 弯曲和拉伸。
 
 ## flex/contact
 **internal="false"**        

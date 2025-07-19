@@ -37,7 +37,8 @@
       radius=".001" mass="5" name="plate" dim="2" material="r2b" rgba="1 1 1 1">
       <!-- <contact condim="3" solref="0.01 1" solimp=".95 .99 .0001"/> -->
       <edge equality="false" damping="10" />
-      <elasticity young="3e5" poisson="0" thickness="1e-2" />
+      <!-- 注意mujoco版本，elastic2d参数在3.3.3之后版本才支持 -->
+      <elasticity young="3e5" poisson="0" thickness="1e-2" elastic2d="stretch"/>
     </flexcomp>
   </worldbody>
 </mujoco>

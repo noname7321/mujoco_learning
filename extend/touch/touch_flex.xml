@@ -61,8 +61,9 @@
             radius=".001" mass="10" name="plate" dim="2">
             <contact condim="3" solref="0.01 1" solimp=".95 .99 .0001" />
             <edge equality="false" damping="10" />
+            <!-- 注意mujoco版本，elastic2d参数在3.3.3之后版本才支持 -->
             <elasticity young="3e5" poisson="0" thickness="1e-2" elastic2d="stretch" />
-            <!-- <pin id="0 15 240 255" /> -->
+            <pin id="0 15 240 255" />
         </flexcomp>
 
     </worldbody>
