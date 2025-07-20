@@ -13,6 +13,18 @@ cmake --build . 多线程编译使用 cmake --build . -j线程数
 * 选择安装位置（推荐/opt）  
   `cmake -DCMAKE_INSTALL_PREFIX=/opt/mujoco .`
 * `sudo cmake --install .`
+
+## 插件支持
+创建一个mujoco_plugin文件夹，再将编译好之后的build/lib下的链接库(如libactuator.so，libelasticity.so，libsdf_plugin.so，libsensor.so等)拷贝到该文件夹中
+把该文件夹拷贝到你运行simulata的同级目录中
+1.
+![](../asset/plugin1.png)
+2.
+![](../asset/plugin2.png)
+3.
+![](../asset/plugin3.png)
+**之后就可以加载model/plugin中的模型**
+
 ### 测试
 ```
 cd bin/
