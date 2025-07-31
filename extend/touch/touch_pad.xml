@@ -47,7 +47,7 @@
             <replicate count="20" offset="0.0 0.02 0.0">
                 <replicate count="20" offset="0.02 0.0 0.0">
                     <body pos="0 0 0.02">
-                        <geom type="box" size="0.01 0.01 0.01" rgba="1 1 1 0.5" mass="0"/>
+                        <geom type="box" size="0.01 0.01 0.01" rgba="1 1 1 0.5" mass="0" />
                         <site name="touch_point" />
                     </body>
                 </replicate>

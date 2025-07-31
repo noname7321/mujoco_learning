@@ -229,14 +229,14 @@ void DeepCamera::compute_ray_vec_in_cam() {
   mjtNum res_vec[3];
   mjtNum start_h_angle = fov_h / 2.0;
   mjtNum start_v_angle = fov_v / 2.0;
-  for (int i = 0; i < v_ray_num; i ++) {
-    for (int j = 0; j < h_ray_num; j ++) {
+  for (int i = 0; i < v_ray_num; i++) {
+    mjtNum angle_x = ((start_v_angle - v_res * i) / 180.0) * mjPI;
+    mju_axisAngle2Quat(quat_x, axis_x, angle_x);
+    for (int j = 0; j < h_ray_num; j++) {
 
-      mjtNum angle_x = ((start_v_angle - v_res * i) / 180.0) * mjPI;
-      mju_axisAngle2Quat(quat_x, axis_x, angle_x);
       mjtNum angle_y = ((start_h_angle - h_res * j) / 180.0) * mjPI;
       mju_axisAngle2Quat(quat_y, axis_y, angle_y);
-      mju_mulQuat(combined_quat, quat_y, quat_x);
+      mju_mulQuat(combined_quat, quat_x, quat_y);
       mju_rotVecQuat(res_vec, ref_vec, combined_quat);
 
       int idx = _get_idx(i, j) * 3;

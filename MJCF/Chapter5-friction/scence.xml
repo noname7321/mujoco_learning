@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mujoco model="inverted_pendulum">
+    <compiler angle="radian" meshdir="meshes" autolimits="true" />
+    <option timestep="0.002" gravity="0 0 -9.81" wind="0 0 0" integrator="implicitfast"
+        density="0" viscosity="0" cone="elliptic"/>
+
+    <visual>
+        <global realtime="1" />
+        <quality shadowsize="16384" numslices="28" offsamples="4" />
+        <headlight diffuse="1 1 1" specular="0.5 0.5 0.5" active="1" />
+        <rgba fog="1 0 0 1" haze="1 1 1 1" />
+    </visual>
+
+    <asset>
+        <texture type="skybox" file="../asset/desert.png"
+            gridsize="3 4" gridlayout=".U..LFRB.D.." />
+        <texture name="plane" type="2d" builtin="checker" rgb1=".1 .1 .1" rgb2=".9 .9 .9"
+            width="512" height="512" mark="cross" markrgb=".8 .8 .8" />
+        <material name="plane" reflectance="0.3" texture="plane" texrepeat="1 1" texuniform="true" />
+        <texture name="y2c" type="cube" builtin="gradient" rgb1="1 1 0" rgb2="0 1 1"
+            width="512" height="512" />
+        <material name="y2c" reflectance="0.3" texture="y2c" texrepeat="1 1" texuniform="true" />
+        <texture name="r2b" type="cube" builtin="gradient" rgb1="1 0 0" rgb2="0 0 1"
+            width="512" height="512" />
+        <material name="r2b" reflectance="0.3" texture="r2b" texrepeat="1 1" texuniform="true" />
+        <texture name="g2b" type="cube" builtin="gradient" rgb1="0 1 0" rgb2="0 0 1"
+            width="512" height="512" />
+        <material name="g2b" reflectance="0.3" texture="g2b" texrepeat="1 1" texuniform="true" />
+        <mesh name="tetrahedron" 
+        vertex="0 0 0 
+                0 0 1
+                1 0 0 
+                1 0 1
+                0 2 0
+                1 2 0" />
+    </asset>
+
+    <worldbody>
+        <geom name="floor" pos="0 0 0" size="10 10 .1" type="plane" material="plane"
+            condim="3" friction="0 0 0" priority="-1"/>
+        <light directional="true" ambient=".3 .3 .3" pos="30 30 30" dir="0 -2 -1"
+            diffuse=".5 .5 .5" specular=".5 .5 .5" />
+
+        <body pos="-0.5 0 0.3">
+            <freejoint />
+            <geom type="cylinder" mass="1" size="0.3" fromto="0 0 0 0.1 0 0"  condim="6" friction="1 0.05 0.01" material="y2c"/>
+        </body>
+
+        <body pos="0 0 0.3">
+            <freejoint />
+            <geom type="sphere" mass="1" size="0.3" condim="6" friction="1 0.05 0.01" material="r2b"/>
+        </body>
+
+        <body pos="0.6 0 0">
+            <geom type="mesh" mesh="tetrahedron" mass="1" size="0.1" priority="-1" friction="0 0 0" material="g2b"/>
+        </body>
+
+        <body pos="1 0.2 0.9" >
+            <freejoint />
+            <geom type="cylinder" mass="1" size="0.3" condim="3" fromto="0 0 0 0 0.1 0.2" friction="1 0.005 0.01" material="g2b"/>
+        </body>
+
+    </worldbody>
+</mujoco>

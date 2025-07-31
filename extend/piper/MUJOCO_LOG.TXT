@@ -1,0 +1,6 @@
+Wed Jul 23 16:30:20 2025
+WARNING: Insufficient arena memory for the number of constraints generated. Increase arena memory allocation above 14M bytes. Time = 0.6440.
+
+Wed Jul 23 16:58:02 2025
+WARNING: Insufficient arena memory for the number of constraints generated. Increase arena memory allocation above 14M bytes. Time = 0.1500.
+

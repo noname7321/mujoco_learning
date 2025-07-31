@@ -1,0 +1,41 @@
+<mujoco>
+    <compiler angle="radian" meshdir="meshes" autolimits="true" />
+    <option timestep="1e-3"/>
+    <asset>
+        <mesh name="tetrahedron" vertex="0 0 0 1 0 0 0 1 0 0 0 1" />
+        <texture type="skybox" file="../asset/desert.png"
+            gridsize="3 4" gridlayout=".U..LFRB.D.." />
+        <texture name="plane" type="2d" builtin="checker" rgb1=".1 .1 .1" rgb2=".9 .9 .9"
+            width="512" height="512" mark="cross" markrgb=".8 .8 .8" />
+        <material name="plane" reflectance="0.3" texture="plane" texrepeat="1 1" texuniform="true" />
+    </asset>
+
+    <worldbody>
+        <geom name="floor" pos="0 0 0" size="0 0 .25" type="plane" material="plane"
+           solimp="0.5 1 0.1 0.5 2" solref="0.02 1" solmix="0" condim="1"/>
+        <light directional="true" ambient=".3 .3 .3" pos="30 30 30" dir="0 -.5 -1"
+            diffuse=".5 .5 .5" specular=".5 .5 .5" />
+
+        <!-- <body pos="0 0 0.1">
+            <freejoint/>
+            <geom type="box" size="0.1 0.1 0.1" solimp="0.0 0.0 0.1 1 6"/>
+        </body>
+
+        <body pos="0.2 0 0.1">
+            <freejoint/>
+            <geom type="box" size="0.1 0.1 0.1" solimp="0.0 0.0 0.1 1 6"/>
+        </body> -->
+
+        <body name="ball" pos="0 0.2 0.2">
+            <joint type="slide" axis="0 0 1"/>
+            <geom size="0.1" solimp="0.1 0.9 0.001 0.5 2" solref="0.01 1" mass="1" solmix="1" condim="1"/>
+        </body>
+
+    </worldbody>
+
+    <sensor>
+        <framepos name="ball_pos" objtype="body" objname="ball"/>
+        <framelinacc name="ball_acc" objtype="body" objname="ball"/>
+    <framelinvel name="ball_vel" objtype="body" objname="ball"/>
+    </sensor>
+</mujoco>

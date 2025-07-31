@@ -4,7 +4,6 @@ import math
 import mujoco
 import mujoco.viewer
 import cv2
-import glfw
 import numpy as np
 
 m = mujoco.MjModel.from_xml_path('../touch_pad.xml')

@@ -100,21 +100,6 @@ void scroll(GLFWwindow *window, double xoffset, double yoffset) {
   mjv_moveCamera(m, mjMOUSE_ZOOM, 0, -0.05 * yoffset, &scn, &cam);
 }
 
-std::vector<float> get_sensor_data(const mjModel *model, const mjData *data,
-                                   const std::string &sensor_name) {
-  int sensor_id = mj_name2id(model, mjOBJ_SENSOR, sensor_name.c_str());
-  if (sensor_id == -1) {
-    std::cout << "no found sensor" << std::endl;
-    return std::vector<float>();
-  }
-  int data_pos = model->sensor_adr[sensor_id];
-  std::vector<float> sensor_data(model->sensor_dim[sensor_id]);
-  for (int i = 0; i < sensor_data.size(); i++) {
-    sensor_data[i] = data->sensordata[data_pos + i];
-  }
-  return sensor_data;
-}
-
 void get_cam_image(mjvCamera *cam, int width, int height, int stereo) {
   mjrRect viewport2 = {0, 0, width, height};
   int before_stereo = scn.stereo;
@@ -265,17 +250,17 @@ int main(int argc, const char **argv) {
     //深度相机绘制
     // dc.compute_ray_vec();
     //计算时长 ms
-    // auto start = std::chrono::high_resolution_clock::now();
+    auto start = std::chrono::high_resolution_clock::now();
     dc.get_distance();
-    // auto end = std::chrono::high_resolution_clock::now();
-    // std::cout << "get_distance time: " <<
-    // std::chrono::duration_cast<std::chrono::milliseconds>(end -
-    // start).count() << "ms" << std::endl;
+    auto end = std::chrono::high_resolution_clock::now();
+    std::cout <<"nray:"<< dc.nray<<"  get_distance time: " <<
+    std::chrono::duration_cast<std::chrono::milliseconds>(end -
+    start).count() << "ms" << std::endl;
 
     cv::Mat image = dc.get_image();
     cv::imshow("deep camera", image);
     cv::waitKey(1);
-    // dc.draw_deep_ray(&scn,20,true);
+    dc.draw_deep_ray(&scn,10,true);
     // dc.draw_deep(&scn,10);
 
     mjr_render(viewport, &scn, &con);

@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/albusgive/mujoco_learning/extend/deep_camera/C++/build",
+  "command": "/usr/bin/clang++-14 -DmjUSEPLATFORMSIMD -I/home/albusgive/mujoco_learning/extend/deep_camera/C++/simulate -isystem /opt/mujoco/include -isystem /usr/local/include/opencv4 -g -o CMakeFiles/deep_camera.dir/dc_test.cpp.o -c /home/albusgive/mujoco_learning/extend/deep_camera/C++/dc_test.cpp",
+  "file": "/home/albusgive/mujoco_learning/extend/deep_camera/C++/dc_test.cpp"
+}
+]
