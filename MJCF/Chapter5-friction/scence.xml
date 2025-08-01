@@ -2,7 +2,7 @@
 <mujoco model="inverted_pendulum">
     <compiler angle="radian" meshdir="meshes" autolimits="true" />
     <option timestep="0.002" gravity="0 0 -9.81" wind="0 0 0" integrator="implicitfast"
-        density="0" viscosity="0" cone="elliptic"/>
+        density="0" viscosity="0" cone="elliptic" impratio="1"/>
 
     <visual>
         <global realtime="1" />
@@ -17,48 +17,122 @@
         <texture name="plane" type="2d" builtin="checker" rgb1=".1 .1 .1" rgb2=".9 .9 .9"
             width="512" height="512" mark="cross" markrgb=".8 .8 .8" />
         <material name="plane" reflectance="0.3" texture="plane" texrepeat="1 1" texuniform="true" />
-        <texture name="y2c" type="cube" builtin="gradient" rgb1="1 1 0" rgb2="0 1 1"
+        <texture name="y_and_c" type="cube" builtin="checker" rgb1="1 1 0" rgb2="0 1 1"
             width="512" height="512" />
-        <material name="y2c" reflectance="0.3" texture="y2c" texrepeat="1 1" texuniform="true" />
+        <material name="y_and_c" reflectance="0.3" texture="y_and_c" texrepeat="1 1"
+            texuniform="true" />
+        <texture name="r_and_b" type="cube" builtin="checker" rgb1="1 0 0" rgb2="0 0 1"
+            width="512" height="512" />
+        <material name="r_and_b" reflectance="0.3" texture="r_and_b" texrepeat="1 1"
+            texuniform="true" />
+        <texture name="g_and_b" type="cube" builtin="checker" rgb1="0 1 0" rgb2="0 0 1"
+            width="512" height="512" />
+        <material name="g_and_b" reflectance="0.3" texture="g_and_b" texrepeat="1 1"
+            texuniform="true" />
+
         <texture name="r2b" type="cube" builtin="gradient" rgb1="1 0 0" rgb2="0 0 1"
             width="512" height="512" />
-        <material name="r2b" reflectance="0.3" texture="r2b" texrepeat="1 1" texuniform="true" />
+        <material name="r2b" reflectance="0.3" texture="r2b" texrepeat="1 1"
+            texuniform="true" />
         <texture name="g2b" type="cube" builtin="gradient" rgb1="0 1 0" rgb2="0 0 1"
             width="512" height="512" />
         <material name="g2b" reflectance="0.3" texture="g2b" texrepeat="1 1" texuniform="true" />
-        <mesh name="tetrahedron" 
-        vertex="0 0 0 
-                0 0 1
-                1 0 0 
-                1 0 1
+        <mesh name="slope1"
+            vertex="0 0 0 
+                1 0 0
+                1 2 0 
                 0 2 0
-                1 2 0" />
+                1 2 1
+                0 2 1" />
+        <mesh name="slope2"
+            vertex="0 0 0 
+                    1 0 0
+                    1 2 0 
+                    0 2 0
+                    1 2 0.5
+                    0 2 0.5" />
     </asset>
 
     <worldbody>
         <geom name="floor" pos="0 0 0" size="10 10 .1" type="plane" material="plane"
-            condim="3" friction="0 0 0" priority="-1"/>
+            condim="3" friction="1 0.005 0.0001" priority="-1" />
         <light directional="true" ambient=".3 .3 .3" pos="30 30 30" dir="0 -2 -1"
             diffuse=".5 .5 .5" specular=".5 .5 .5" />
 
-        <body pos="-0.5 0 0.3">
+        <body pos="-1 -1 0.3">
             <freejoint />
-            <geom type="cylinder" mass="1" size="0.3" fromto="0 0 0 0.1 0 0"  condim="6" friction="1 0.05 0.01" material="y2c"/>
+            <geom type="box" mass="1" size="0.3 0.3 0.3" condim="1" friction="1 0.005 0.0001"
+                rgba="1 0.2 0.2 1" />
+        </body>
+
+        <body pos="0 -1 0.3">
+            <freejoint />
+            <geom type="box" mass="1" size="0.3 0.3 0.3" condim="3" friction="1 0.005 0.0001"
+                rgba="0.2 1 0.2 1" />
+        </body>
+
+        <!-- <body pos="-1 0 0.3">
+            <freejoint />
+            <geom type="cylinder" mass="1" size="0.3" fromto="0 0 0 0.1 0 0" condim="3"
+                friction="1 0.05 0.01" material="y_and_c" />
+        </body> -->
+
+        <body pos="-1 0 0.3">
+            <freejoint />
+            <geom type="sphere" mass="1" size="0.3" condim="3" friction="1 0.05 0.01"
+                material="r_and_b" />
         </body>
 
         <body pos="0 0 0.3">
             <freejoint />
-            <geom type="sphere" mass="1" size="0.3" condim="6" friction="1 0.05 0.01" material="r2b"/>
+            <geom type="sphere" mass="1" size="0.3" condim="4" friction="1 0.01 0.01"
+                material="y_and_c" />
         </body>
 
-        <body pos="0.6 0 0">
-            <geom type="mesh" mesh="tetrahedron" mass="1" size="0.1" priority="-1" friction="0 0 0" material="g2b"/>
-        </body>
-
-        <body pos="1 0.2 0.9" >
+        <body pos="1 0 0.3">
             <freejoint />
-            <geom type="cylinder" mass="1" size="0.3" condim="3" fromto="0 0 0 0 0.1 0.2" friction="1 0.005 0.01" material="g2b"/>
+            <geom type="sphere" mass="1" size="0.3" condim="6" friction="1 0.01 0.01"
+                material="g_and_b" />
         </body>
+
+        <!-- 斜坡 -->
+        <body pos="-2.5 1 0">
+            <geom type="mesh" mesh="slope1" priority="-1" material="r2b" />
+        </body>
+        <body pos="-2 2.6 1.2">
+            <freejoint />
+            <geom type="cylinder" mass="1" size="0.3" condim="1" fromto="0 0 0 0 0.1 -0.2"
+                friction="1 0.005 0.01" material="r2b" />
+        </body>
+
+        <body pos="-1 1 0">
+            <geom type="mesh" mesh="slope1" priority="-1" material="g2b" />
+        </body>
+        <body pos="-0.5 2.6 1.2">
+            <freejoint />
+            <geom type="cylinder" mass="1" size="0.3" condim="3" fromto="0 0 0 0 0.1 -0.2"
+                friction="1 0.005 0.01" material="g2b" />
+        </body>
+
+
+        <body pos="1.5 1 0">
+            <geom type="mesh" mesh="slope2" priority="-1" material="r2b" />
+        </body>
+        <body pos="2 2.6 0.7">
+            <freejoint />
+            <geom type="sphere" mass="1" size="0.3" condim="4" friction="1 0.005 0.01"
+                material="r2b" />
+        </body>
+        
+        <body pos="2.5 1 0">
+            <geom type="mesh" mesh="slope2" priority="-1" material="g2b" />
+        </body>
+        <body pos="3 2.6 0.7">
+            <freejoint />
+            <geom type="sphere" mass="1" size="0.3" condim="6" friction="1 0.005 0.05"
+                material="g2b" />
+        </body>
+        
 
     </worldbody>
 </mujoco>
