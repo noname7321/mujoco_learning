@@ -9,7 +9,9 @@
 > 第四节   关节 [joint](MJCF/Chapter4-joint/tutorial.md)
 > - 关节类型，关节动力，关节参数等
 >
-> 第五节   摩擦力计算方式 [friction](MJCF/Chapter5-friction/tutorial.md)
+> 第五节   摩擦力设置及计算方式 [friction](MJCF/Chapter5-friction/tutorial.md)
+> - mujoco中多维度的摩擦力调整
+> 
 > 第六节   驱动器 [actuator](MJCF/Chapter6-actuator/tutorial.md)
 > - 添加速度控制，位置控制，力矩控制等
 >
