@@ -1,4 +1,5 @@
 # friction
+friction有三个参数分别是滑动摩擦，转动摩擦，滚动摩擦系数
 ## option（椭圆/金字塔）
 cone=[pyramidal, elliptic] 摩擦力近似计算方法,默认pyramidal计算速度快，elliptic效果更好
 impratio="1" 椭圆摩擦的比例，更高的数值摩擦力会更硬一些，防止打滑，不建议在使用pyramidal的时候调大，适合机械臂抓取打滑时调整参数
