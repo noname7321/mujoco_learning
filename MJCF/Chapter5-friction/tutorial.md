@@ -37,7 +37,7 @@ impratio="1" 椭圆摩擦的比例，更高的数值摩擦力会更硬一些，�
 |e5,e6|e7~e10|friction3|
 
 **源码：**
-engine/engine_core_constraint.c：getposdim
+engine/engine_core_constraint.c：getposdim      
 ![](../asset/friction_dim.png)
 engine/engine_core_constraint.c：mj_makeImpedance
 **下面friction是一个长度为5的数组，fri是mjcf中定义的friction参数**
