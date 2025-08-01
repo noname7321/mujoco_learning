@@ -38,11 +38,11 @@ impratio="1" 椭圆摩擦的比例，更高的数值摩擦力会更硬一些，�
 
 **源码：**
 engine/engine_core_constraint.c：getposdim      
-![](../asset/friction_dim.png)
-engine/engine_core_constraint.c：mj_makeImpedance
-**下面friction是一个长度为5的数组，fri是mjcf中定义的friction参数**
-![](../asset/friction_data.png)
-![](../asset/friction_compute2.png)
+![](../asset/friction_dim.png)      
+engine/engine_core_constraint.c：mj_makeImpedance           
+**下面friction是一个长度为5的数组，fri是mjcf中定义的friction参数**      
+![](../asset/friction_data.png)     
+![](../asset/friction_compute2.png)     
 
 官方文档：
 [Contact](https://mujoco.readthedocs.io/en/latest/computation/index.html#contact)
