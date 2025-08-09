@@ -36,7 +36,9 @@ a x^{power} & \text{if } x \leq midpoint \\
 
 $$d\left(x_{normal}\right) = d_{0} + Y\left(x_{normal}\right) \left( d_{\text{width}} - d_{0} \right)$$     
 
-[**desmos**](https://www.desmos.com/calculator/irtgrwjpkb?lang=zh-CN)       
+**官方文档图像**        
+![](../../MJCF/asset/mujoco_doc_solimp.png)         
+[**desmos绘制**](https://www.desmos.com/calculator/irtgrwjpkb?lang=zh-CN)       
 ![](../../MJCF/asset/solimp_img.png)        
 **源码位置**        
 engine/engine_core_constraint.c:        
@@ -69,3 +71,7 @@ engine/engine_core_constraint.c:
 void mj_makeImpedance(const mjModel* m, mjData* d)      
 ![](../../MJCF/asset/coompute_solref.png)       
 ![](../../MJCF/asset/coompute_solref2.png)      
+
+## 参考
+[Computation/Soft contact model](https://mujoco.readthedocs.io/en/latest/computation/index.html#soft-contact-model)
+[Modeling/Solver parameters](https://mujoco.readthedocs.io/en/latest/modeling.html#solver-parameters)
