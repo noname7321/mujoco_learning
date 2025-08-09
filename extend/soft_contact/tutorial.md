@@ -28,8 +28,8 @@ $$b = \frac{1}{(1 - \text{midpoint})^{\text{power}-1}}$$
 
 $$Y(x) = \{
 \begin{array}{ll}
-a x^{p_{ower}} & \text{if } x \leq m_{idpoint} \\
-1 - b (1 - x)^{p_{ower}} & \text{if } x > m_{idpoint}
+a x^{power} & \text{if } x \leq midpoint \\
+1 - b (1 - x)^{power} & \text{if } x > midpoint
 \end{array}
 \}
 \quad \text{for} \quad \{ 0 \leq x \leq 1 \}$$      
