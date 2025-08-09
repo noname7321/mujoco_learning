@@ -26,15 +26,13 @@ $$x_{\text{normal}} = \frac{|r|}{\text{width}}$$
 $$a = \frac{1}{\text{midpoint}^{\text{power}-1}}$$
 $$b = \frac{1}{(1 - \text{midpoint})^{\text{power}-1}}$$
 
-$$
-Y\left(x\right) = \left\{
+$$Y(x) = \{
 \begin{array}{ll}
 a x^{p_{ower}} & \text{if } x \leq m_{idpoint} \\
-1 - b \left(1 - x\right)^{p_{ower}} & \text{if } x > m_{idpoint}
+1 - b (1 - x)^{p_{ower}} & \text{if } x > m_{idpoint}
 \end{array}
-\right\}
-\quad \text{for} \quad \left\{ 0 \leq x \leq 1 \right\}
-$$
+\}
+\quad \text{for} \quad \{ 0 \leq x \leq 1 \}$$
 
 $$d\left(x_{normal}\right) = d_{0} + Y\left(x_{normal}\right) \left( d_{\text{width}} - d_{0} \right)$$
 
