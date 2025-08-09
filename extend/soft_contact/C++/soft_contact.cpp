@@ -28,11 +28,8 @@ public:
     // scn.flags[mjtRndFlag::mjRND_IDCOLOR] = true;
     /*--------场景渲染--------*/
   }
-  int cnt = 0;
   void step() {
 
-    // cnt++;
-    // if (cnt <= 220) {
     mj_step(m, d);
     auto pos = get_sensor_data(m, d, "ball_pos");
     auto acc = get_sensor_data(m, d, "ball_acc");
@@ -40,19 +37,17 @@ public:
     std::cout << "acc:" << acc[2] << std::endl;
     std::cout << "vel:" << vel[2] << std::endl;
     std::cout << "r(vel-pos):" << 0.1 - pos[2] << std::endl;
-    std::cout << "r(efc_pos-efc_margin):" << d->efc_pos[0] - d->efc_margin[0] << std::endl;
+    std::cout << "r(efc_pos-efc_margin):" << d->efc_pos[0] - d->efc_margin[0]
+              << std::endl;
     std::cout << "n efc:" << std::endl;
-    mjtNum efc_a = 0;
     for (int i = 0; i < d->nefc; i++) {
       int id = d->efc_id[i];
-      auto cnt = d->contact[id];
       std::cout << "  KBIP:" << d->efc_KBIP[i * 4 + 0] << " "
                 << d->efc_KBIP[i * 4 + 1] << " " << d->efc_KBIP[i * 4 + 2]
                 << " " << d->efc_KBIP[i * 4 + 3] << std::endl;
       std::cout << "  efc_force:" << d->efc_force[i] << std::endl;
       std::cout << "  efc_aref:" << d->efc_aref[i] << std::endl;
     }
-    // }
   }
   void step_unlock() {}
 };
