@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/albusgive2/mujoco_learning/extend/deep_camera/C++
+CMAKE_SOURCE_DIR = "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/albusgive2/mujoco_learning/extend/deep_camera/C++/b
+CMAKE_BINARY_DIR = "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/b"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/albusgive2/mujoco_learning/extend/deep_camera/C++/b/CMakeFiles /home/albusgive2/mujoco_learning/extend/deep_camera/C++/b//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/b/CMakeFiles" "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/b//CMakeFiles/progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/albusgive2/mujoco_learning/extend/deep_camera/C++/b/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/b/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -117,41 +117,65 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named deep_camera
+# Target rules for targets named soft_contact
 
 # Build rule for target.
-deep_camera: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 deep_camera
-.PHONY : deep_camera
+soft_contact: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 soft_contact
+.PHONY : soft_contact
 
 # fast build rule for target.
-deep_camera/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/deep_camera.dir/build.make CMakeFiles/deep_camera.dir/build
-.PHONY : deep_camera/fast
+soft_contact/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/soft_contact.dir/build.make CMakeFiles/soft_contact.dir/build
+.PHONY : soft_contact/fast
 
-dc_test.o: dc_test.cpp.o
-.PHONY : dc_test.o
+mujoco_thread.o: mujoco_thread.cpp.o
+.PHONY : mujoco_thread.o
 
 # target to build an object file
-dc_test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/deep_camera.dir/build.make CMakeFiles/deep_camera.dir/dc_test.cpp.o
-.PHONY : dc_test.cpp.o
+mujoco_thread.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/soft_contact.dir/build.make CMakeFiles/soft_contact.dir/mujoco_thread.cpp.o
+.PHONY : mujoco_thread.cpp.o
 
-dc_test.i: dc_test.cpp.i
-.PHONY : dc_test.i
+mujoco_thread.i: mujoco_thread.cpp.i
+.PHONY : mujoco_thread.i
 
 # target to preprocess a source file
-dc_test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/deep_camera.dir/build.make CMakeFiles/deep_camera.dir/dc_test.cpp.i
-.PHONY : dc_test.cpp.i
+mujoco_thread.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/soft_contact.dir/build.make CMakeFiles/soft_contact.dir/mujoco_thread.cpp.i
+.PHONY : mujoco_thread.cpp.i
 
-dc_test.s: dc_test.cpp.s
-.PHONY : dc_test.s
+mujoco_thread.s: mujoco_thread.cpp.s
+.PHONY : mujoco_thread.s
 
 # target to generate assembly for a file
-dc_test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/deep_camera.dir/build.make CMakeFiles/deep_camera.dir/dc_test.cpp.s
-.PHONY : dc_test.cpp.s
+mujoco_thread.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/soft_contact.dir/build.make CMakeFiles/soft_contact.dir/mujoco_thread.cpp.s
+.PHONY : mujoco_thread.cpp.s
+
+soft_contact.o: soft_contact.cpp.o
+.PHONY : soft_contact.o
+
+# target to build an object file
+soft_contact.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/soft_contact.dir/build.make CMakeFiles/soft_contact.dir/soft_contact.cpp.o
+.PHONY : soft_contact.cpp.o
+
+soft_contact.i: soft_contact.cpp.i
+.PHONY : soft_contact.i
+
+# target to preprocess a source file
+soft_contact.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/soft_contact.dir/build.make CMakeFiles/soft_contact.dir/soft_contact.cpp.i
+.PHONY : soft_contact.cpp.i
+
+soft_contact.s: soft_contact.cpp.s
+.PHONY : soft_contact.s
+
+# target to generate assembly for a file
+soft_contact.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/soft_contact.dir/build.make CMakeFiles/soft_contact.dir/soft_contact.cpp.s
+.PHONY : soft_contact.cpp.s
 
 # Help Target
 help:
@@ -161,10 +185,13 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... deep_camera"
-	@echo "... dc_test.o"
-	@echo "... dc_test.i"
-	@echo "... dc_test.s"
+	@echo "... soft_contact"
+	@echo "... mujoco_thread.o"
+	@echo "... mujoco_thread.i"
+	@echo "... mujoco_thread.s"
+	@echo "... soft_contact.o"
+	@echo "... soft_contact.i"
+	@echo "... soft_contact.s"
 .PHONY : help
 
 

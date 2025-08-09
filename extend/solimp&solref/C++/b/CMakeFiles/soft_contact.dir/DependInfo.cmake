@@ -8,7 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/albusgive2/mujoco_learning/extend/deep_camera/C++/dc_test.cpp" "CMakeFiles/deep_camera.dir/dc_test.cpp.o" "gcc" "CMakeFiles/deep_camera.dir/dc_test.cpp.o.d"
+  "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/mujoco_thread.cpp" "CMakeFiles/soft_contact.dir/mujoco_thread.cpp.o" "gcc" "CMakeFiles/soft_contact.dir/mujoco_thread.cpp.o.d"
+  "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/soft_contact.cpp" "CMakeFiles/soft_contact.dir/soft_contact.cpp.o" "gcc" "CMakeFiles/soft_contact.dir/soft_contact.cpp.o.d"
   )
 
 # Targets to which this target links.

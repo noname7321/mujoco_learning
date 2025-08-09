@@ -1,3 +1,0 @@
-/home/albusgive/mujoco_learning/MJCF/Chapter16-solimp&solref/C++/b/CMakeFiles/constraint.dir
-/home/albusgive/mujoco_learning/MJCF/Chapter16-solimp&solref/C++/b/CMakeFiles/edit_cache.dir
-/home/albusgive/mujoco_learning/MJCF/Chapter16-solimp&solref/C++/b/CMakeFiles/rebuild_cache.dir
