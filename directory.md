@@ -85,6 +85,10 @@
 > > [ray(Python)](Python/Chapter7-ray/tutorial.md)
 
 ### 拓展和进阶
-> 一、 触觉检测
+> 触觉检测
 > - 刚性触摸板和柔性材料触觉检测，通过api实现，并非插件方式
 > > [touch(C++&Python)](extend/touch/readme.md)
+>
+> 软接触
+> - mujoco中碰撞模型，如何通过调整动态“弹簧-阻尼”模型让模型
+> > [soft contact(mjcf&C++&Python)](extend/soft_contact/tutorial.md)
