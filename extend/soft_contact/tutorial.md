@@ -1,4 +1,5 @@
-# solimp&solref
+# Soft Contact
+**软接触由geom中的solimp和olref参数调控**
 ![](../../MJCF/asset/soft_solver_param.png)     
 [公式计算可视化（desmos）](https://www.desmos.com/calculator/irtgrwjpkb?lang=zh-CN)         
 **在这里把碰撞拆解成了下面公式**          
@@ -12,7 +13,7 @@ $$a_{1}=(1-d) \cdot a_{0}-d \cdot a_{ref}$$
 
 **这就是一个动态的“弹簧-阻尼”模型，a<sub>ref</sub>是一个“弹簧-阻尼“，陷入深入r越大a<sub>ref</sub>权重越高，约束力越强”**        
 
-## solimp       
+## solimp参数       
 **solimp这个参数会计算出来上述公式中的d，这个d的计算会和两个物体碰撞时陷入的深度有关，d的范围是(0,1)。下面参数会计算出来d(r)**
 > 参数：(d<sub>0</sub>,d<sub>width</sub>,width,midpoint,power)
 >- d<sub>0</sub>：d的最小值
@@ -45,7 +46,7 @@ engine/engine_core_constraint.c:
 static void getimpedance(const mjtNum* solimp, mjtNum pos, mjtNum margin,mjtNum* imp, mjtNum* impP)     
 ![](../../MJCF/asset/compute_solimp.png)        
 
-## solref       
+## solref参数       
 **这个参数影响公式中的k,b**     
 
 > 参数为正值(timeconst,dampratio)
@@ -71,6 +72,16 @@ engine/engine_core_constraint.c:
 void mj_makeImpedance(const mjModel* m, mjData* d)      
 ![](../../MJCF/asset/coompute_solref.png)       
 ![](../../MJCF/asset/coompute_solref2.png)      
+
+## solimp和solref的混合规则         
+> 情况一：根据priority的大小，选择两个碰撞geom中priority大的solimp和solref参数     
+> 情况二：如果priority相同则根据两个geom的solmix参数计算一个mix值，为各自solmix占两个solmix和的比例
+>* 两个geom的solmix均大于0，mix=mix = solmix1 / (solmix1 + solmix2)
+>* 又任意一方的solmix小于等于0,则使用对方的参数
+   
+源码位置：engine/engine_collision_driver.c: 
+mj_contactParam         
+![](../../MJCF/asset/mix_con.png)
 
 ## 参考
 [Computation/Soft contact model](https://mujoco.readthedocs.io/en/latest/computation/index.html#soft-contact-model)
