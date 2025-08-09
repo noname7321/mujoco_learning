@@ -22,9 +22,9 @@ $$a_{1}=(1-d) \cdot a_{0}-d \cdot a_{ref}$$
 >- power：控制d变化曲线，会使曲线变化的“更快”
 
 **计算公式**        
-$$x_{\text{normal}} = \frac{|r|}{\text{width}}$$
-$$a = \frac{1}{\text{midpoint}^{\text{power}-1}}$$
-$$b = \frac{1}{(1 - \text{midpoint})^{\text{power}-1}}$$
+$$x_{\text{normal}} = \frac{|r|}{\text{width}}$$        
+$$a = \frac{1}{\text{midpoint}^{\text{power}-1}}$$      
+$$b = \frac{1}{(1 - \text{midpoint})^{\text{power}-1}}$$        
 
 $$Y(x) = \{
 \begin{array}{ll}
@@ -32,9 +32,9 @@ a x^{p_{ower}} & \text{if } x \leq m_{idpoint} \\
 1 - b (1 - x)^{p_{ower}} & \text{if } x > m_{idpoint}
 \end{array}
 \}
-\quad \text{for} \quad \{ 0 \leq x \leq 1 \}$$
+\quad \text{for} \quad \{ 0 \leq x \leq 1 \}$$      
 
-$$d\left(x_{normal}\right) = d_{0} + Y\left(x_{normal}\right) \left( d_{\text{width}} - d_{0} \right)$$
+$$d\left(x_{normal}\right) = d_{0} + Y\left(x_{normal}\right) \left( d_{\text{width}} - d_{0} \right)$$     
 
 [**desmos**](https://www.desmos.com/calculator/irtgrwjpkb?lang=zh-CN)       
 ![](../../MJCF/asset/solimp_img.png)        
@@ -50,17 +50,17 @@ static void getimpedance(const mjtNum* solimp, mjtNum pos, mjtNum margin,mjtNum*
 >- timeconst：会影响k,b，数值越小k,b越大，但不会小于两倍的timestep（强制性的）
 >- dampratio：会影响k,数值越小k越大，一般设置为1,数值过小会阻尼不够或弹性不足，数值过大会约束过过度
 
-**计算公式**
-$$b=\frac{2}{d_{width} \cdot timeconst}$$
-$$k=\frac{d(r)}{d_{width} \cdot timeconst^2 \cdot dampratio^2}$$
+**计算公式**        
+$$b=\frac{2}{d_{width} \cdot timeconst}$$       
+$$k=\frac{d(r)}{d_{width} \cdot timeconst^2 \cdot dampratio^2}$$        
 
 > 参数为负值(-stiffness,-damping)
 >- stiffness：与d<sub>width</sub>一起影响k值
 >- damping：与d，d<sub>width</sub>一起影响b值
 
-**计算公式**
-$$b=\frac{damping}{d_{width}}$$
-$$k=\frac{stiffness \cdot d(r)}{d_{width}^2}$$
+**计算公式**        
+$$b=\frac{damping}{d_{width}}$$     
+$$k=\frac{stiffness \cdot d(r)}{d_{width}^2}$$      
 
 [**desmos**](https://www.desmos.com/calculator/irtgrwjpkb?lang=zh-CN)       
 ![](../../MJCF/asset/solref_desmos.png)     
