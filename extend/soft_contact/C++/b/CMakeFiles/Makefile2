@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++"
+CMAKE_SOURCE_DIR = /home/albusgive2/mujoco_learning/extend/soft_contact/C++
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/b"
+CMAKE_BINARY_DIR = /home/albusgive2/mujoco_learning/extend/soft_contact/C++/b
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -81,14 +81,14 @@ clean: CMakeFiles/soft_contact.dir/clean
 CMakeFiles/soft_contact.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/soft_contact.dir/build.make CMakeFiles/soft_contact.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/soft_contact.dir/build.make CMakeFiles/soft_contact.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/b/CMakeFiles" --progress-num=1,2,3 "Built target soft_contact"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/albusgive2/mujoco_learning/extend/soft_contact/C++/b/CMakeFiles --progress-num=1,2,3 "Built target soft_contact"
 .PHONY : CMakeFiles/soft_contact.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/soft_contact.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/b/CMakeFiles" 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/albusgive2/mujoco_learning/extend/soft_contact/C++/b/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/soft_contact.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/b/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/albusgive2/mujoco_learning/extend/soft_contact/C++/b/CMakeFiles 0
 .PHONY : CMakeFiles/soft_contact.dir/rule
 
 # Convenience name for target.

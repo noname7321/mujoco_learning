@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++"
+CMAKE_SOURCE_DIR = /home/albusgive2/mujoco_learning/extend/soft_contact/C++
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/b"
+CMAKE_BINARY_DIR = /home/albusgive2/mujoco_learning/extend/soft_contact/C++/b
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/b/CMakeFiles" "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/b//CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/albusgive2/mujoco_learning/extend/soft_contact/C++/b/CMakeFiles /home/albusgive2/mujoco_learning/extend/soft_contact/C++/b//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/b/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/albusgive2/mujoco_learning/extend/soft_contact/C++/b/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

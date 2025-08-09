@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++"
+CMAKE_SOURCE_DIR = /home/albusgive2/mujoco_learning/extend/soft_contact/C++
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/b"
+CMAKE_BINARY_DIR = /home/albusgive2/mujoco_learning/extend/soft_contact/C++/b
 
 # Include any dependencies generated for this target.
 include CMakeFiles/soft_contact.dir/depend.make
@@ -72,30 +72,30 @@ include CMakeFiles/soft_contact.dir/flags.make
 CMakeFiles/soft_contact.dir/soft_contact.cpp.o: CMakeFiles/soft_contact.dir/flags.make
 CMakeFiles/soft_contact.dir/soft_contact.cpp.o: ../soft_contact.cpp
 CMakeFiles/soft_contact.dir/soft_contact.cpp.o: CMakeFiles/soft_contact.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/b/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/soft_contact.dir/soft_contact.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/soft_contact.dir/soft_contact.cpp.o -MF CMakeFiles/soft_contact.dir/soft_contact.cpp.o.d -o CMakeFiles/soft_contact.dir/soft_contact.cpp.o -c "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/soft_contact.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/albusgive2/mujoco_learning/extend/soft_contact/C++/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/soft_contact.dir/soft_contact.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/soft_contact.dir/soft_contact.cpp.o -MF CMakeFiles/soft_contact.dir/soft_contact.cpp.o.d -o CMakeFiles/soft_contact.dir/soft_contact.cpp.o -c /home/albusgive2/mujoco_learning/extend/soft_contact/C++/soft_contact.cpp
 
 CMakeFiles/soft_contact.dir/soft_contact.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/soft_contact.dir/soft_contact.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/soft_contact.cpp" > CMakeFiles/soft_contact.dir/soft_contact.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/albusgive2/mujoco_learning/extend/soft_contact/C++/soft_contact.cpp > CMakeFiles/soft_contact.dir/soft_contact.cpp.i
 
 CMakeFiles/soft_contact.dir/soft_contact.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/soft_contact.dir/soft_contact.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/soft_contact.cpp" -o CMakeFiles/soft_contact.dir/soft_contact.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/albusgive2/mujoco_learning/extend/soft_contact/C++/soft_contact.cpp -o CMakeFiles/soft_contact.dir/soft_contact.cpp.s
 
 CMakeFiles/soft_contact.dir/mujoco_thread.cpp.o: CMakeFiles/soft_contact.dir/flags.make
 CMakeFiles/soft_contact.dir/mujoco_thread.cpp.o: ../mujoco_thread.cpp
 CMakeFiles/soft_contact.dir/mujoco_thread.cpp.o: CMakeFiles/soft_contact.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/b/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/soft_contact.dir/mujoco_thread.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/soft_contact.dir/mujoco_thread.cpp.o -MF CMakeFiles/soft_contact.dir/mujoco_thread.cpp.o.d -o CMakeFiles/soft_contact.dir/mujoco_thread.cpp.o -c "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/mujoco_thread.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/albusgive2/mujoco_learning/extend/soft_contact/C++/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/soft_contact.dir/mujoco_thread.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/soft_contact.dir/mujoco_thread.cpp.o -MF CMakeFiles/soft_contact.dir/mujoco_thread.cpp.o.d -o CMakeFiles/soft_contact.dir/mujoco_thread.cpp.o -c /home/albusgive2/mujoco_learning/extend/soft_contact/C++/mujoco_thread.cpp
 
 CMakeFiles/soft_contact.dir/mujoco_thread.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/soft_contact.dir/mujoco_thread.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/mujoco_thread.cpp" > CMakeFiles/soft_contact.dir/mujoco_thread.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/albusgive2/mujoco_learning/extend/soft_contact/C++/mujoco_thread.cpp > CMakeFiles/soft_contact.dir/mujoco_thread.cpp.i
 
 CMakeFiles/soft_contact.dir/mujoco_thread.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/soft_contact.dir/mujoco_thread.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/mujoco_thread.cpp" -o CMakeFiles/soft_contact.dir/mujoco_thread.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/albusgive2/mujoco_learning/extend/soft_contact/C++/mujoco_thread.cpp -o CMakeFiles/soft_contact.dir/mujoco_thread.cpp.s
 
 # Object files for target soft_contact
 soft_contact_OBJECTS = \
@@ -164,7 +164,7 @@ soft_contact: /usr/lib/x86_64-linux-gnu/libopencv_photo.so.4.5.4d
 soft_contact: /usr/lib/x86_64-linux-gnu/libopencv_imgproc.so.4.5.4d
 soft_contact: /usr/lib/x86_64-linux-gnu/libopencv_core.so.4.5.4d
 soft_contact: CMakeFiles/soft_contact.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/b/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable soft_contact"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/albusgive2/mujoco_learning/extend/soft_contact/C++/b/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable soft_contact"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/soft_contact.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -176,6 +176,6 @@ CMakeFiles/soft_contact.dir/clean:
 .PHONY : CMakeFiles/soft_contact.dir/clean
 
 CMakeFiles/soft_contact.dir/depend:
-	cd "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/b" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++" "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++" "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/b" "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/b" "/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/b/CMakeFiles/soft_contact.dir/DependInfo.cmake" --color=$(COLOR)
+	cd /home/albusgive2/mujoco_learning/extend/soft_contact/C++/b && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/albusgive2/mujoco_learning/extend/soft_contact/C++ /home/albusgive2/mujoco_learning/extend/soft_contact/C++ /home/albusgive2/mujoco_learning/extend/soft_contact/C++/b /home/albusgive2/mujoco_learning/extend/soft_contact/C++/b /home/albusgive2/mujoco_learning/extend/soft_contact/C++/b/CMakeFiles/soft_contact.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/soft_contact.dir/depend
 

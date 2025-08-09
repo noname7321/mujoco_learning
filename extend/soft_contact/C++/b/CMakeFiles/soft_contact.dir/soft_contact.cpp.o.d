@@ -1,7 +1,7 @@
 CMakeFiles/soft_contact.dir/soft_contact.cpp.o: \
- /home/albusgive2/mujoco_learning/extend/solimp&solref/C++/soft_contact.cpp \
+ /home/albusgive2/mujoco_learning/extend/soft_contact/C++/soft_contact.cpp \
  /usr/include/stdc-predef.h \
- /home/albusgive2/mujoco_learning/extend/solimp&solref/C++/mujoco_thread.h \
+ /home/albusgive2/mujoco_learning/extend/soft_contact/C++/mujoco_thread.h \
  /usr/include/GLFW/glfw3.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h /usr/include/stdint.h \

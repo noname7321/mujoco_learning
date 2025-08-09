@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DmjUSEPLATFORMSIMD
 
-CXX_INCLUDES = -I"/home/albusgive2/mujoco_learning/extend/solimp&solref/C++/simulate" -isystem /opt/mujoco/include -isystem /usr/include/opencv4
+CXX_INCLUDES = -I/home/albusgive2/mujoco_learning/extend/soft_contact/C++/simulate -isystem /opt/mujoco/include -isystem /usr/include/opencv4
 
 CXX_FLAGS = 
 
