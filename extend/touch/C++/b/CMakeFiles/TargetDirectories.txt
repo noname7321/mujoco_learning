@@ -1,4 +1,0 @@
-/home/albusgive/mujoco_learning/extend/touch/C++/b/CMakeFiles/touchpad.dir
-/home/albusgive/mujoco_learning/extend/touch/C++/b/CMakeFiles/touchflex.dir
-/home/albusgive/mujoco_learning/extend/touch/C++/b/CMakeFiles/edit_cache.dir
-/home/albusgive/mujoco_learning/extend/touch/C++/b/CMakeFiles/rebuild_cache.dir

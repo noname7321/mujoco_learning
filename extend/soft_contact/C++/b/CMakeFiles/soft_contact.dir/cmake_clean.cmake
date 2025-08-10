@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/soft_contact.dir/mujoco_thread.cpp.o"
-  "CMakeFiles/soft_contact.dir/mujoco_thread.cpp.o.d"
+  "CMakeFiles/soft_contact.dir/home/albusgive2/mujoco_learning/utils/mujoco_thread/mujoco_thread.cpp.o"
+  "CMakeFiles/soft_contact.dir/home/albusgive2/mujoco_learning/utils/mujoco_thread/mujoco_thread.cpp.o.d"
   "CMakeFiles/soft_contact.dir/soft_contact.cpp.o"
   "CMakeFiles/soft_contact.dir/soft_contact.cpp.o.d"
   "soft_contact"

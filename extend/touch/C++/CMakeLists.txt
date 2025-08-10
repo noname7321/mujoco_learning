@@ -11,7 +11,9 @@ endif()
 
 find_package(OpenCV REQUIRED)
 
-add_executable(touchpad touchpad.cpp mujoco_thread.cpp)
+set(mujoco_thread_path ${CMAKE_CURRENT_SOURCE_DIR}/../../../utils/mujoco_thread)
+include_directories(${mujoco_thread_path})
+add_executable(touchpad touchpad.cpp ${mujoco_thread_path}/mujoco_thread.cpp)
 target_link_libraries(touchpad mujoco::mujoco glut GL GLU glfw ${OpenCV_LIBS})
-add_executable(touchflex touchflex.cpp mujoco_thread.cpp)
+add_executable(touchflex touchflex.cpp ${mujoco_thread_path}/mujoco_thread.cpp)
 target_link_libraries(touchflex mujoco::mujoco glut GL GLU glfw ${OpenCV_LIBS})

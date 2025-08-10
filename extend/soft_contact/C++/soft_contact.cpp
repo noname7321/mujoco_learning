@@ -28,26 +28,40 @@ public:
     // scn.flags[mjtRndFlag::mjRND_IDCOLOR] = true;
     /*--------场景渲染--------*/
   }
-  void step() {
 
+  // 在碰撞后第n步停止仿真
+  bool is_contact_stop = true;
+  int n_contact_step = 150;
+  int contact_step = 0;
+  void step() {
     mj_step(m, d);
     auto pos = get_sensor_data(m, d, "ball_pos");
-    auto acc = get_sensor_data(m, d, "ball_acc");
-    auto vel = get_sensor_data(m, d, "ball_vel");
-    std::cout << "acc:" << acc[2] << std::endl;
-    std::cout << "vel:" << vel[2] << std::endl;
-    std::cout << "r(vel-pos):" << 0.1 - pos[2] << std::endl;
-    std::cout << "r(efc_pos-efc_margin):" << d->efc_pos[0] - d->efc_margin[0]
+    auto a0 = mju_norm3(m->opt.gravity);
+    mjtNum err_a = 0;
+    std::cout << "a0: " << a0 << std::endl;
+    std::cout << "r(R-pos): " << 0.1 - pos[2] << std::endl;
+    std::cout << "r(efc_pos-efc_margin): " << d->efc_pos[0] - d->efc_margin[0]
               << std::endl;
     std::cout << "n efc:" << std::endl;
+    if (d->nefc > 0 && is_contact_stop) {
+      contact_step++;
+      if (contact_step > n_contact_step) {
+        is_step.store(false);
+      }
+    }
+    int ball_id = mj_name2id(m, mjtObj::mjOBJ_BODY, "ball");
     for (int i = 0; i < d->nefc; i++) {
       int id = d->efc_id[i];
-      std::cout << "  KBIP:" << d->efc_KBIP[i * 4 + 0] << " "
+      std::cout << "  KBIP: " << d->efc_KBIP[i * 4 + 0] << " "
                 << d->efc_KBIP[i * 4 + 1] << " " << d->efc_KBIP[i * 4 + 2]
                 << " " << d->efc_KBIP[i * 4 + 3] << std::endl;
-      std::cout << "  efc_force:" << d->efc_force[i] << std::endl;
-      std::cout << "  efc_aref:" << d->efc_aref[i] << std::endl;
+      std::cout << "  efc_vel: " << d->efc_vel[i] << std::endl;
+      std::cout << "  efc_force: " << d->efc_force[i] << std::endl;
+      err_a = d->efc_force[i] / m->body_mass[ball_id];
+      std::cout << "  efc_acc: " << err_a << std::endl;
+      std::cout << "  efc_aref: " << d->efc_aref[i] << std::endl;
     }
+    std::cout << "dif acc: " << a0 - err_a << std::endl;
   }
   void step_unlock() {}
 };

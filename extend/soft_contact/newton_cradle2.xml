@@ -1,0 +1,48 @@
+<mujoco model="Newton's Cradle">
+  <option timestep="1e-4" />
+
+  <visual>
+    <!-- <global realtime="0.2" /> -->
+  </visual>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="64" height="64" />
+    <texture name="texplane" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2"
+      width="512" height="512" mark="cross" markrgb=".8 .8 .8" />
+    <material name="matplane" reflectance="0.5" texture="texplane" texrepeat="3 3" texuniform="true" />
+  </asset>
+
+  <default>
+    <default class="line">
+      <site type="capsule" size="0.001" fromto="0 0 0 0 0 -0.16" rgba="0 0 1 1"/>
+    </default>
+    <default class="steel ball">
+     <geom size=".02" rgba=".7 .7 0 1" density="8000" friction=".4" solref="-1e8 -0" solimp="0 .01 1e-3"/>
+    </default>
+  </default>
+
+  <worldbody>
+    <light pos=".5 0 1" dir="-1 0 -2" />
+    <light pos="-.5 0 1" dir="1 0 -2" />
+    <geom type="plane" size="4 4 .1" material="matplane" />
+
+    <replicate count="5" offset="-.04 0 0">
+      <body name="equilibrium" pos="0 0 .2">
+        <joint type="hinge" axis="0 1 0" />
+        <site class="line" />
+        <body pos="0 0 -0.16">
+          <geom class="steel ball" />
+        </body>
+      </body>
+    </replicate>
+
+    <body name="perturbed" pos=".04 0 .2" euler="0 -34 0">
+      <joint type="hinge" axis="0 1 0" />
+      <site class="line" />
+      <body pos="0 0 -0.16">
+        <geom class="steel ball" />
+      </body>
+    </body>
+  </worldbody>
+
+</mujoco>

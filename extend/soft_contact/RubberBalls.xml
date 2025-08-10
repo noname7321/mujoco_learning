@@ -1,0 +1,45 @@
+<mujoco>
+    <compiler angle="radian" autolimits="true" />
+    <option timestep="1e-3" />
+    <asset>
+        <texture type="skybox" file="../../MJCF/asset/desert.png"
+            gridsize="3 4" gridlayout=".U..LFRB.D.." />
+        <texture name="plane" type="2d" builtin="checker" rgb1=".1 .1 .1" rgb2=".9 .9 .9"
+            width="512" height="512" mark="cross" markrgb=".8 .8 .8" />
+        <material name="plane" reflectance="0.3" texture="plane" texrepeat="1 1" texuniform="true" />
+    </asset>
+
+    <worldbody>
+        <geom name="floor" pos="0 0 0" size="0 0 .25" type="plane" material="plane"
+            solimp="0.5 1 0.1 0.5 2" solref="0.02 1" solmix="0" condim="1" />
+        <light directional="true" ambient=".3 .3 .3" pos="30 30 30" dir="0 -.5 -1"
+            diffuse=".5 .5 .5" specular=".5 .5 .5" />
+
+        <!-- 不同的弹性  solref参数直接调整stiffness和damping-->
+        <replicate count="4" offset="0.5 0 -0.5">
+            <body pos="3 0 2">
+                <freejoint />
+                <geom size="0.05" solimp="0.1 0.9 0.001 0.5 2" solref="-100000 -0" mass="0.01"
+                    solmix="1" condim="3" rgba="1 0 0 1" />
+            </body>
+        </replicate>
+
+        <replicate count="4" offset="0.5 0 -0.5">
+            <body pos="3 1 2">
+                <freejoint />
+                <geom size="0.05" solimp="0.1 0.9 0.001 0.5 2" solref="-100000 -10" mass="0.01"
+                    solmix="1" condim="3" rgba="0 1 0 1" />
+            </body>
+        </replicate>
+
+        <replicate count="4" offset="0.5 0 -0.5">
+            <body pos="3 2 2">
+                <freejoint />
+                <geom size="0.05" solimp="0.1 0.9 0.001 0.5 2" solref="-100000 -50" mass="0.01"
+                    solmix="1" condim="3" rgba="0 0 1 1" />
+            </body>
+        </replicate>
+
+    </worldbody>
+
+</mujoco>

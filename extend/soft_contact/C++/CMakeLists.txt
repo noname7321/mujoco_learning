@@ -11,6 +11,9 @@ endif()
 
 find_package(OpenCV REQUIRED)
 
-add_executable(soft_contact soft_contact.cpp mujoco_thread.cpp)
+set(mujoco_thread_path ${CMAKE_CURRENT_SOURCE_DIR}/../../../utils/mujoco_thread)
+include_directories(${mujoco_thread_path})
+
+add_executable(soft_contact soft_contact.cpp ${mujoco_thread_path}/mujoco_thread.cpp)
 target_link_libraries(soft_contact mujoco::mujoco glut GL GLU glfw ${OpenCV_LIBS})
 
