@@ -85,6 +85,26 @@ void mj_makeImpedance(const mjModel* m, mjData* d)
 mj_contactParam         
 ![](../../MJCF/asset/mix_con.png)
 
+## 调整思路             
+**可以从pd控制器和碰撞曲线两个方面分析碰撞**        
+### PD          
+$$a_{ref}=-bv-kr$$          
+由这个公式可以分析出，如果我们想抑制陷入深度（穿模），那需要增大刚度k的参数，如果碰撞弹性很大或者是接触时抖动剧烈，可能是阻尼b不够      
+### 碰撞曲线        
+
+### 例子        
+碰撞曲线计算出d参数，会根据陷入深度动态调节pd控制器的比例       
+**橡胶材料(RubberBalls)**           
+它们的弹性形变量可以很大，那可以调大width参数           
+- **如果想要橡胶硬一点**首先增加pd的刚度，其次形变恢复速度要快可以调整曲线让曲线更抖一些(小形变时pd控制器的占比也会比较高)，那就可以增加    d<sub>0</sub>并减小midpoint和power      
+- **如果想要橡胶柔一点**，那就是降低刚度，并让曲线缓一点和上述相反      
+
+**金属材料(newton_cradle)**，金属材料的弹性型变量一般比较小，刚性很强，那么width参数就要小一些，刚度k要大一些。然后金属之间碰撞时间会很短，所以碰撞曲线就要变化小，舒缓一些，所以可以d<sub>0</sub>=0,d<sub>width</sub>也要比较小，这样的曲线就很近似短时间碰撞情况      
+
+**缓冲能力较强材料(cushioning)**        
+从比较高空落地不怎么反弹，静止时也不会有很大的形变，可以在增加刚度k的同时增加阻尼b      
+
+
 ## 参考
 [Computation/Soft contact model](https://mujoco.readthedocs.io/en/latest/computation/index.html#soft-contact-model)
 [Modeling/Solver parameters](https://mujoco.readthedocs.io/en/latest/modeling.html#solver-parameters)

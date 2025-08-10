@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mujoco model="inverted_pendulum">
-    <compiler angle="radian" meshdir="assets" autolimits="true" />
+    <compiler angle="radian" autolimits="true" />
     <option timestep="0.002" gravity="0 0 -9.81" integrator="implicitfast" density="1.225"
         viscosity="1.8e-5" />
 
@@ -12,7 +12,7 @@
     <include file="CJ-003-wheelfoot.xml"/>
     <asset>
         <mesh name="tetrahedron" vertex="0 0 0 1 0 0 0 1 0 0 0 1" />
-        <texture type="skybox" file="desert.png"
+        <texture type="skybox" file="../desert.png"
             gridsize="3 4" gridlayout=".U..LFRB.D.." />
         <texture name="plane" type="2d" builtin="checker" rgb1=".1 .1 .1" rgb2=".9 .9 .9"
             width="512" height="512" mark="cross" markrgb=".8 .8 .8" />
