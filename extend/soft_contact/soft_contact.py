@@ -38,7 +38,7 @@ with mujoco.viewer.launch_passive(m, d) as viewer:
         err_a = d.efc_force[i] / m.body_mass[ball_id]
         print("  efc_acc: ", d.efc_pos[i])
         print("  efc_aref: ", d.efc_aref[i])
-      print("dif acc: ", a0 - err_a)
+      print("a1: ", a0 - err_a)
 
     # Pick up changes to the physics state, apply perturbations, update options from GUI.
     viewer.sync()

@@ -2,7 +2,7 @@
     <compiler angle="radian" autolimits="true" />
     <option timestep="1e-3" gravity="0 0 -9.81" />
     <visual>
-        <global realtime="0.05" />
+        <!-- <global realtime="0.05" /> -->
     </visual>
     <asset>
         <texture type="skybox" file="../../MJCF/asset/desert.png"
@@ -20,7 +20,7 @@
 
         <body name="ball" pos="0 0.2 0.2">
             <joint type="slide" axis="0 0 1" />
-            <geom size="0.1" solimp="0.1 0.9 0.001 0.5 2" solref="0.02 1" mass="2" solmix="1"
+            <geom size="0.1" solimp="0.1 0.9 0.001 0.5 2" solref="-1000 -100" mass="2" solmix="1"
                 condim="1" rgba=".3 .9 .9 1"/>
         </body>
     </worldbody>

@@ -3,26 +3,12 @@
 #include <cstddef>
 #include <iomanip>
 #include <mutex>
-mujoco_thread::mujoco_thread(std::string model_file, double max_FPS)
-    : max_FPS(max_FPS) {
+mujoco_thread::mujoco_thread(std::string model_file, double max_FPS, int width,
+                             int height, std::string title)
+    : max_FPS(max_FPS), width(width), height(height), title(title) {
   min_render_time = 1000.0 / max_FPS;
   // load and compile model
-  char error[1000] = "Could not load binary model";
-  if (model_file.size() > 4 &&
-      model_file.compare(model_file.size() - 4, 4, ".mjb") == 0) {
-    m = mj_loadModel(model_file.c_str(), 0);
-  } else {
-    m = mj_loadXML(model_file.c_str(), 0, error, 1000);
-  }
-  if (!m) {
-    mju_error("Load model error: %s", error);
-  }
-
-  // make data
-  d = mj_makeData(m);
-  mj_resetDataKeyframe(m, d, 0);
-
-  // mj_step(m, d);
+  load_model(model_file);
 }
 
 mujoco_thread::~mujoco_thread() {
@@ -39,10 +25,21 @@ void mujoco_thread::load_model(mjModel *m) {
   mj_resetDataKeyframe(this->m, d, 0);
 }
 
+void mujoco_thread::set_window_size(int width, int height) {
+  this->width = width;
+  this->height = height;
+}
+
+void mujoco_thread::set_window_title(std::string title) { this->title = title; }
+
+void mujoco_thread::set_max_FPS(double max_FPS) {
+  this->max_FPS = max_FPS;
+  min_render_time = 1000.0 / max_FPS;
+}
+
 void mujoco_thread::connect_windows_sim() { connect_windows.store(true); }
 
-mjModel *mujoco_thread::load_model(std::string model_file) {
-  mjModel *m = nullptr;
+void mujoco_thread::load_model(std::string model_file) {
   char error[1000] = "Could not load binary model";
   if (model_file.size() > 4 &&
       model_file.compare(model_file.size() - 4, 4, ".mjb") == 0) {
@@ -53,7 +50,9 @@ mjModel *mujoco_thread::load_model(std::string model_file) {
   if (!m) {
     mju_error("Load model error: %s", error);
   }
-  return m;
+  // make data
+  d = mj_makeData(m);
+  mj_resetDataKeyframe(m, d, 0);
 }
 
 void mujoco_thread::sim() {
@@ -87,7 +86,7 @@ void mujoco_thread::render() {
 
   is_show.store(true);
   render_thread = std::thread([this]() {
-    initRender(1200, 900, "MUJOCO");
+    initRender(width, height, title.c_str());
     while (is_show.load()) {
       updateRender();
     }

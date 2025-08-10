@@ -14,18 +14,23 @@
 
 class mujoco_thread {
   friend class mj_env;
+
 public:
   mujoco_thread() = default;
-  mujoco_thread(std::string model_file, double max_FPS = 60);
+  mujoco_thread(std::string model_file, double max_FPS = 60, int width = 1200,
+                int height = 900, std::string title = "MUJOCO");
   ~mujoco_thread();
 
-  static mjModel *load_model(std::string model_file);
+  void load_model(std::string model_file);
   void load_model(mjModel *m);
+  void set_window_size(int width, int height);
+  void set_window_title(std::string title);
+  void set_max_FPS(double max_FPS);
 
-  //调用之后关闭窗口会停止仿真
+  // 调用之后关闭窗口会停止仿真
   void connect_windows_sim();
   void sim();
-  virtual void step()=0;
+  virtual void step() = 0;
   virtual void step_unlock();
   virtual void vis_cfg();
   // 渲染
@@ -55,12 +60,15 @@ private:
   double last_click_time = 0;
 
   double fps = 0.0;
+  int width = 1200;
+  int height = 900;
+  std::string title = "MUJOCO";
 
   GLFWwindow *window = nullptr;
   std::mutex m_mtx;
   std::atomic_bool is_step{true};
   std::atomic_bool is_sim{true};
-  std::atomic_bool connect_windows{false}; //是否关闭窗口停止仿真
+  std::atomic_bool connect_windows{false}; // 是否关闭窗口停止仿真
 
   // 窗口操作
 
@@ -85,7 +93,7 @@ private:
   std::thread render_thread;
 
   // 计算并更新 FPS
-  double max_FPS;
+  double max_FPS = 60;
   double min_render_time; // ms
   void updateRender();
 

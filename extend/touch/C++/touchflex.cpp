@@ -7,8 +7,11 @@
 
 class mj_env : public mujoco_thread {
 public:
-  mj_env(std::string model_file, double max_FPS = 60)
-      : mujoco_thread(model_file, max_FPS) {
+  mj_env(std::string model_file, double max_FPS = 60) {
+    load_model(model_file);
+    set_window_size(1920, 1080);
+    set_window_title("MUJOCO Soft Contact");
+    set_max_FPS(max_FPS);
     /*--------读取信息--------*/
     std::cout << "n flex: " << m->nflex << std::endl;
     std::cout << "n flex elem: " << m->nflexelem << std::endl;
@@ -33,8 +36,8 @@ public:
     /*--------场景渲染--------*/
   }
   cv::Mat touch_elem, touch_vert;
-  int x_n_elem = 30,y_n_elem = 15;
-  int x_n_vert = 16,y_n_vert = 16;
+  int x_n_elem = 30, y_n_elem = 15;
+  int x_n_vert = 16, y_n_vert = 16;
   void step() {
     mj_step(m, d);
     // std::cout << "contact msg" << std::endl;
@@ -52,7 +55,8 @@ public:
               mjtNum force = mju_norm3(force_torque);
               int y = (int)(cont->elem[k] / x_n_elem);
               int x = cont->elem[k] % x_n_elem;
-              touch_elem.at<uchar>(y, x) = mju_clip(force / 3 * 255, 0.0, 255.0);
+              touch_elem.at<uchar>(y, x) =
+                  mju_clip(force / 3 * 255, 0.0, 255.0);
             }
           }
         } else if (cont->vert[0] != -1 || cont->vert[1] != -1) {
@@ -63,8 +67,9 @@ public:
               mjtNum force = mju_norm3(force_torque);
               int y = (int)(cont->vert[k] / x_n_vert);
               int x = cont->vert[k] % x_n_vert;
-              if(x<x_n_vert&&y<y_n_vert)
-                touch_vert.at<uchar>(y, x) = mju_clip(force / 1 * 255, 0.0, 255.0);
+              if (x < x_n_vert && y < y_n_vert)
+                touch_vert.at<uchar>(y, x) =
+                    mju_clip(force / 1 * 255, 0.0, 255.0);
             }
           }
         }

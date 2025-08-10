@@ -7,8 +7,11 @@
 
 class mj_env : public mujoco_thread {
 public:
-  mj_env(std::string model_file, double max_FPS = 60)
-      : mujoco_thread(model_file, max_FPS) {
+  mj_env(std::string model_file, double max_FPS = 60) {
+    load_model(model_file);
+    set_window_size(1920, 1080);
+    set_window_title("MUJOCO Soft Contact");
+    set_max_FPS(max_FPS);
     /*--------读取传感器--------*/
     std::cout << "sensor_num: " << m->nsensor << std::endl;
     auto print = [&](int num, int *adr) {
@@ -67,8 +70,8 @@ public:
   }
   void step_unlock() {
     cv::resize(touch, touch, cv::Size(200, 200));
-      cv::imshow("touch", touch);
-      cv::waitKey(1);
+    cv::imshow("touch", touch);
+    cv::waitKey(1);
   }
 };
 

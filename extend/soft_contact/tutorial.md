@@ -1,5 +1,5 @@
 # Soft Contact
-***&emsp;&emsp;软接触由geom中的solimp和olref参数调控***
+***&emsp;&emsp;软接触由geom中的solimp和solref参数调控***
 &emsp;&emsp;虽然geom在mujoco中是刚体，但是通过soft contact可以近似现实中物体碰撞时发生的形变，比如刚性比较强的物体发生的微小变形，又或者是一个可以通过缓冲力的物体，又或者是一个很有弹性的橡皮球，这些在mujoco的刚体中可以通过soft contact近似出这些物体的碰撞情况       
 ![](../../MJCF/asset/contact.gif)       
 ![](../../MJCF/asset/soft_solver_param.png)     
@@ -90,10 +90,10 @@ mj_contactParam
 ### PD          
 $$a_{ref}=-bv-kr$$          
 由这个公式可以分析出，如果我们想抑制陷入深度（穿模），那需要增大刚度k的参数，如果碰撞弹性很大或者是接触时抖动剧烈，可能是阻尼b不够      
-### 碰撞曲线        
+### 碰撞曲线    
+碰撞曲线计算出d参数，会根据陷入深度动态调节pd控制器的比例        
 
 ### 例子        
-碰撞曲线计算出d参数，会根据陷入深度动态调节pd控制器的比例       
 **橡胶材料(RubberBalls)**           
 它们的弹性形变量可以很大，那可以调大width参数           
 - **如果想要橡胶硬一点**首先增加pd的刚度，其次形变恢复速度要快可以调整曲线让曲线更抖一些(小形变时pd控制器的占比也会比较高)，那就可以增加    d<sub>0</sub>并减小midpoint和power      

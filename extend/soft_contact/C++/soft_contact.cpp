@@ -9,8 +9,12 @@
 
 class mj_env : public mujoco_thread {
 public:
-  mj_env(std::string model_file, double max_FPS = 60)
-      : mujoco_thread(model_file, max_FPS) {}
+  mj_env(std::string model_file, double max_FPS = 60){
+    load_model(model_file);
+    set_window_size(2560,1440);
+    set_window_title("MUJOCO Soft Contact");
+    set_max_FPS(max_FPS);
+  }
   void vis_cfg() {
     /*--------可视化配置--------*/
     // opt.flags[mjtVisFlag::mjVIS_CONTACTPOINT] = true;
@@ -31,7 +35,7 @@ public:
 
   // 在碰撞后第n步停止仿真
   bool is_contact_stop = true;
-  int n_contact_step = 150;
+  int n_contact_step = 100;
   int contact_step = 0;
   void step() {
     mj_step(m, d);
@@ -61,7 +65,7 @@ public:
       std::cout << "  efc_acc: " << err_a << std::endl;
       std::cout << "  efc_aref: " << d->efc_aref[i] << std::endl;
     }
-    std::cout << "dif acc: " << a0 - err_a << std::endl;
+    std::cout << "a1: " << a0 - err_a << std::endl;
   }
   void step_unlock() {}
 };
@@ -69,7 +73,7 @@ public:
 // main function
 int main(int argc, const char **argv) {
 
-  mj_env mujoco("../../scene.xml", 170);
+  mj_env mujoco("../../scene.xml",60);
   mujoco.connect_windows_sim();
   mujoco.render();
   mujoco.sim();
