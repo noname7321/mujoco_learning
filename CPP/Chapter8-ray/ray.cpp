@@ -147,7 +147,7 @@ void draw_line(mjvScene *scn, mjtNum *from, mjtNum *to, mjtNum width,
 int main(int argc, const char **argv) {
 
   char error[1000] = "Could not load binary model";
-  m = mj_loadXML("../../../API-MJC/deep_ray.xml", 0, error, 1000);
+  m = mj_loadXML("../../../API-MJCF/deep_ray.xml", 0, error, 1000);
 
   // make data
   d = mj_makeData(m);

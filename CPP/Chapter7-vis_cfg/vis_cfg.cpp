@@ -137,7 +137,7 @@ void get_cam_image(mjvCamera *cam,int width,int height,int stereo) {
 int main(int argc, const char **argv) {
 
   char error[1000] = "Could not load binary model";
-  m = mj_loadXML("../../../API-MJC/vis_cfg.xml", 0, error, 1000);
+  m = mj_loadXML("../../../API-MJCF/vis_cfg.xml", 0, error, 1000);
 
   // make data
   d = mj_makeData(m);

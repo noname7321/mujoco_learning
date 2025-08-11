@@ -45,7 +45,7 @@ mkdir build
 cd build
 cmake ..
 make
-./basic ../../../API-MJC/pointer.xml
+./basic ../../../API-MJCF/pointer.xml
 ```
 
 # 编译simulate测试

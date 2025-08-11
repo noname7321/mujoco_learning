@@ -7,7 +7,7 @@ import cv2
 import glfw
 import numpy as np
 
-m = mujoco.MjModel.from_xml_path('../../API-MJC/vis_cfg.xml')
+m = mujoco.MjModel.from_xml_path('../../API-MJCF/vis_cfg.xml')
 d = mujoco.MjData(m)
 
 glfw.init()

@@ -2,7 +2,7 @@ import time
 import mujoco
 import mujoco.viewer
 
-m = mujoco.MjModel.from_xml_path('../../API-MJC/force.xml')
+m = mujoco.MjModel.from_xml_path('../../API-MJCF/force.xml')
 d = mujoco.MjData(m)
 
 mujoco.mj_step(m, d)

@@ -7,7 +7,7 @@ import cv2
 import glfw
 import numpy as np
 
-m = mujoco.MjModel.from_xml_path('../../API-MJC/deep_ray.xml')
+m = mujoco.MjModel.from_xml_path('../../API-MJCF/deep_ray.xml')
 d = mujoco.MjData(m)
 
 camID = mujoco.mj_name2id(m, mujoco.mjtObj.mjOBJ_CAMERA, "look_box")

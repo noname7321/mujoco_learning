@@ -7,7 +7,7 @@ import cv2
 import glfw
 import numpy as np
 
-m = mujoco.MjModel.from_xml_path('../../API-MJC/mecanum.xml')
+m = mujoco.MjModel.from_xml_path('../../API-MJCF/mecanum.xml')
 d = mujoco.MjData(m)
 
 def get_sensor_data(sensor_name):

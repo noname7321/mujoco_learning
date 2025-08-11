@@ -132,7 +132,7 @@ void draw_geom(mjvScene *scn, int type, mjtNum *size, mjtNum *pos, mjtNum *mat,
 // main function
 int main(int argc, const char **argv) {
   char error[1000] = "Could not load binary model";
-  m = mj_loadXML("../../../API-MJC/mecanum.xml", 0, error, 1000);
+  m = mj_loadXML("../../../API-MJCF/mecanum.xml", 0, error, 1000);
 
   // make data
   d = mj_makeData(m);

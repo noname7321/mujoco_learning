@@ -105,7 +105,7 @@ void scroll(GLFWwindow *window, double xoffset, double yoffset) {
 int main(int argc, const char **argv) {
 
   char error[1000] = "Could not load binary model";
-  m = mj_loadXML("../../../API-MJC/pointer.xml", 0, error, 1000);
+  m = mj_loadXML("../../../API-MJCF/pointer.xml", 0, error, 1000);
 
   // make data
   d = mj_makeData(m);

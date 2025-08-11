@@ -4,7 +4,7 @@ import math
 import mujoco
 import mujoco.viewer
 
-m = mujoco.MjModel.from_xml_path('../../API-MJC/pointer.xml')
+m = mujoco.MjModel.from_xml_path('../../API-MJCF/pointer.xml')
 d = mujoco.MjData(m)
 
 with mujoco.viewer.launch_passive(m, d) as viewer:
