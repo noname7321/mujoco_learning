@@ -16,8 +16,8 @@ python版本可使用python -m mujoco.viewer启动
 |F3|profiler|
 |F4|sensors|
 |F5|全屏|
-|F6|实体名字标签|
-|F7|切换可视化坐标系|
+|F6|切换可视化坐标系|
+|F7|实体名字标签|
 |TAB|隐藏左侧工具栏|
 |Delete|重置世界|
 |`|geom最小外界矩形和碰撞状态|
