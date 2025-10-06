@@ -7,7 +7,7 @@ from mujoco import mjx
 import mujoco.viewer
 
 jax.config.update('jax_platform_name', 'gpu')
-m = mujoco.MjModel.from_xml_path("/home/albusgive/software/mujoco-3.3.4/model/car/car.xml")
+m = mujoco.MjModel.from_xml_path("./car.xml")
 d = mujoco.MjData(m)
 mx = mjx.put_model(m)
 dx = mjx.put_data(m, d)

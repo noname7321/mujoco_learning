@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "MUJOCO_T",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "MUJOCO_T_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-MUJOCO_T_uninstall-Debug-72c39f536cce683b930a.json",
+					"name" : "MUJOCO_T_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "sensor_data::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-sensor_data-Debug-4ca149922ed61bd6bc0c.json",
+					"name" : "sensor_data",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-Debug-47adb9b802c5c56f3e34.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/albusgive2/software/mujoco-3.3.6/plugin/mujoco_ray_caster/demo/ROS2/C++/build",
+		"source" : "/home/albusgive2/software/mujoco-3.3.6/plugin/mujoco_ray_caster/demo/ROS2/C++"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

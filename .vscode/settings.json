@@ -1,5 +1,5 @@
 {
-    "cmake.sourceDirectory": "/home/albusgive/mujoco_learning/CPP/Chapter1-make",
+    "cmake.sourceDirectory": "/home/albusgive2/mujoco_learning/CPP/Chapter1-make",
     "python-envs.defaultEnvManager": "ms-python.python:conda",
     "python-envs.defaultPackageManager": "ms-python.python:conda",
     "python-envs.pythonProjects": []

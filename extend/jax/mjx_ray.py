@@ -7,12 +7,18 @@ from mujoco import mjx
 import mujoco.viewer
 
 jax.config.update('jax_platform_name', 'gpu')
-m = mujoco.MjModel.from_xml_path("/home/albusgive/software/mujoco-3.3.4/model/car/car.xml")
+m = mujoco.MjModel.from_xml_path("./car.xml")
 d = mujoco.MjData(m)
 mx = mjx.put_model(m)
 dx = mjx.put_data(m, d)
 
 print(f'Default backend: {jax.default_backend()}')
+
+# 用jax编译ray
+mjx_ray = mjx.ray
+mjx_ray = jax.jit(mjx_ray)
+
+
 step_fn = mjx.step
 
 # 用jax.jit编译mjx的仿真步进
@@ -21,6 +27,7 @@ start = time.time()
 step_fn = jax.jit(step_fn).lower(mx, dx).compile()
 elapsed = time.time() - start
 print(f'Compilation took {elapsed}s.')
+
 
 print(dx.ctrl.device)
 viewer = mujoco.viewer.launch_passive(m, d)

@@ -113,37 +113,37 @@ void get_cam_image(mjvCamera *cam, int width, int height, int stereo) {
   float *depthBuffer = new float[width * height];
   mjr_readPixels(rgbBuffer, depthBuffer, viewport2, &con);
 
-// 创建浮点类型的深度图像
-cv::Mat depth_float(height, width, CV_32FC1, depthBuffer);
+  // 创建浮点类型的深度图像
+  cv::Mat depth_float(height, width, CV_32FC1, depthBuffer);
 
-// 定义深度范围（0-8米）
-const float min_depth_m = 0.0f;    // 最小深度（0米）
-const float max_depth_m = 8.0f;    // 最大深度（8米）
+  // 定义深度范围（0-8米）
+  const float min_depth_m = 0.0f; // 最小深度（0米）
+  const float max_depth_m = 8.0f; // 最大深度（8米）
 
-// 假设相机参数（根据你的实际设置调整）
-const float near_clip = 0.1f;      // 近裁剪面（米）
-const float far_clip = 50.0f;      // 远裁剪面（米）
+  // 假设相机参数（根据你的实际设置调整）
+  const float near_clip = 0.1f; // 近裁剪面（米）
+  const float far_clip = 50.0f; // 远裁剪面（米）
 
-// 将非线性深度缓冲区值转换为线性深度（米）
-cv::Mat linear_depth_m = depth_float.clone();
-linear_depth_m = far_clip * near_clip / (far_clip - (far_clip - near_clip) * linear_depth_m);
+  // 将非线性深度缓冲区值转换为线性深度（米）
+  cv::Mat linear_depth_m = depth_float.clone();
+  linear_depth_m = far_clip * near_clip /
+                   (far_clip - (far_clip - near_clip) * linear_depth_m);
 
-// 裁剪深度到0-8米范围
-cv::Mat depth_clipped = linear_depth_m.clone();
-depth_clipped.setTo(min_depth_m, linear_depth_m < min_depth_m);  // 小于0设为0
-depth_clipped.setTo(max_depth_m, linear_depth_m > max_depth_m);  // 大于8设为8
+  // 裁剪深度到0-8米范围
+  cv::Mat depth_clipped = linear_depth_m.clone();
+  depth_clipped.setTo(min_depth_m, linear_depth_m < min_depth_m); // 小于0设为0
+  depth_clipped.setTo(max_depth_m, linear_depth_m > max_depth_m); // 大于8设为8
 
-// 映射0-8米到0-255像素值（距离越小越亮）
-cv::Mat depth_visual;
-// 计算映射参数：scale = 255/(max_depth_m - min_depth_m), shift = 0
-float scale = 255.0f / (max_depth_m - min_depth_m);
-// 反转映射：距离越小值越大（越亮）
-cv::Mat inverted_depth = max_depth_m - depth_clipped;
-inverted_depth.convertTo(depth_visual, CV_8UC1, scale);
-cv::flip(depth_visual, depth_visual, 0);
-// 显示深度图
-cv::imshow("deep camera2", depth_visual);
-
+  // 映射0-8米到0-255像素值（距离越小越亮）
+  cv::Mat depth_visual;
+  // 计算映射参数：scale = 255/(max_depth_m - min_depth_m), shift = 0
+  float scale = 255.0f / (max_depth_m - min_depth_m);
+  // 反转映射：距离越小值越大（越亮）
+  cv::Mat inverted_depth = max_depth_m - depth_clipped;
+  inverted_depth.convertTo(depth_visual, CV_8UC1, scale);
+  cv::flip(depth_visual, depth_visual, 0);
+  // 显示深度图
+  // cv::imshow("deep camera2", depth_visual);
 
   cv::Mat image(height, width, CV_8UC3, rgbBuffer);
   // 反转图像以匹配OpenGL渲染坐标系
@@ -194,11 +194,11 @@ int main(int argc, const char **argv) {
 
   /*--------可视化配置--------*/
   // opt.flags[mjtVisFlag::mjVIS_CONTACTPOINT] = true;
-  // opt.flags[mjtVisFlag::mjVIS_CAMERA] = true;
+  opt.flags[mjtVisFlag::mjVIS_CAMERA] = true;
   // opt.flags[mjtVisFlag::mjVIS_CONVEXHULL] = true;
   // opt.flags[mjtVisFlag::mjVIS_COM] = true;
   // opt.label = mjtLabel::mjLABEL_BODY;
-  // opt.frame = mjtFrame::mjFRAME_CAMERA;
+  opt.frame = mjtFrame::mjFRAME_CAMERA;
   /*--------可视化配置--------*/
 
   /*--------场景渲染--------*/
@@ -218,9 +218,9 @@ int main(int argc, const char **argv) {
     boxs_pos[i] = d->geom_xpos + box_idx[i] * 3;
   }
 
-  //相机初始化
+  // 相机初始化
   mjvCamera cam2;
-  int camID = mj_name2id(m, mjOBJ_CAMERA, "look_box2");
+  int camID = mj_name2id(m, mjOBJ_CAMERA, "look_box");
   if (camID == -1) {
     std::cerr << "Camera not found" << std::endl;
   } else {
@@ -230,7 +230,7 @@ int main(int argc, const char **argv) {
   }
 
   mjtNum dis_range[2] = {0.01, 8};
-  DeepCamera dc(m, d, camID, 100, 50, 0.1, 0.1, dis_range);
+  DeepCamera dc(m, d, camID, 100, 50, 3.0, 3.0, dis_range);
   while (!glfwWindowShouldClose(window)) {
     auto step_start = std::chrono::high_resolution_clock::now();
 
@@ -247,20 +247,23 @@ int main(int argc, const char **argv) {
 
     float rgba[4] = {0, 0, 1, 0.5};
 
-    //深度相机绘制
-    // dc.compute_ray_vec();
-    //计算时长 ms
+    // 深度相机绘制
+    //  dc.compute_ray_vec();
+    // 计算时长 ms
     auto start = std::chrono::high_resolution_clock::now();
     dc.get_distance();
     auto end = std::chrono::high_resolution_clock::now();
-    std::cout <<"nray:"<< dc.nray<<"  get_distance time: " <<
-    std::chrono::duration_cast<std::chrono::milliseconds>(end -
-    start).count() << "ms" << std::endl;
+    std::cout << "nray:" << dc.nray << "  get_distance time: "
+              << std::chrono::duration_cast<std::chrono::milliseconds>(end -
+                                                                       start)
+                     .count()
+              << "ms" << std::endl;
 
     cv::Mat image = dc.get_image();
+    cv::resize(image, image, cv::Size(1000, 1000));
     cv::imshow("deep camera", image);
     cv::waitKey(1);
-    dc.draw_deep_ray(&scn,10,true);
+    dc.draw_deep_ray(&scn, 1, true);
     // dc.draw_deep(&scn,10);
 
     mjr_render(viewport, &scn, &con);
@@ -271,7 +274,7 @@ int main(int argc, const char **argv) {
     // process pending GUI events, call GLFW callbacks
     glfwPollEvents();
 
-    //同步时间
+    // 同步时间
     auto current_time = std::chrono::high_resolution_clock::now();
     double elapsed_sec =
         std::chrono::duration<double>(current_time - step_start).count();

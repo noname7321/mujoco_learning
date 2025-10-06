@@ -129,6 +129,19 @@ deep_camera/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/deep_camera.dir/build.make CMakeFiles/deep_camera.dir/build
 .PHONY : deep_camera/fast
 
+#=============================================================================
+# Target rules for targets named raycam_test
+
+# Build rule for target.
+raycam_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 raycam_test
+.PHONY : raycam_test
+
+# fast build rule for target.
+raycam_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/raycam_test.dir/build.make CMakeFiles/raycam_test.dir/build
+.PHONY : raycam_test/fast
+
 dc_test.o: dc_test.cpp.o
 .PHONY : dc_test.o
 
@@ -153,6 +166,30 @@ dc_test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/deep_camera.dir/build.make CMakeFiles/deep_camera.dir/dc_test.cpp.s
 .PHONY : dc_test.cpp.s
 
+raycam_test.o: raycam_test.cpp.o
+.PHONY : raycam_test.o
+
+# target to build an object file
+raycam_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/raycam_test.dir/build.make CMakeFiles/raycam_test.dir/raycam_test.cpp.o
+.PHONY : raycam_test.cpp.o
+
+raycam_test.i: raycam_test.cpp.i
+.PHONY : raycam_test.i
+
+# target to preprocess a source file
+raycam_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/raycam_test.dir/build.make CMakeFiles/raycam_test.dir/raycam_test.cpp.i
+.PHONY : raycam_test.cpp.i
+
+raycam_test.s: raycam_test.cpp.s
+.PHONY : raycam_test.s
+
+# target to generate assembly for a file
+raycam_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/raycam_test.dir/build.make CMakeFiles/raycam_test.dir/raycam_test.cpp.s
+.PHONY : raycam_test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,9 +199,13 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... deep_camera"
+	@echo "... raycam_test"
 	@echo "... dc_test.o"
 	@echo "... dc_test.i"
 	@echo "... dc_test.s"
+	@echo "... raycam_test.o"
+	@echo "... raycam_test.i"
+	@echo "... raycam_test.s"
 .PHONY : help
 
 

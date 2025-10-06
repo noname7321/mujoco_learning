@@ -56,7 +56,7 @@ public:
   */
   int get_idx(int h, int v);
 
-  mjtNum *dist; //距离 h_ray_num * v_ray_num
+  mjtNum *dist; // 距离 h_ray_num * v_ray_num
   int nray;     // 射线数量
 
 private:
@@ -65,7 +65,7 @@ private:
   int cam_id;
   mjtNum *pos;
   mjtNum quat[4];
-  mjtNum *mat;
+  mjtNum *mat;         // 相机的旋转矩阵
   mjtNum fov_h = 50.0; // 水平总视场角 (度)
   mjtNum fov_v = 50.0; // 垂直总视场角 (度)
   int h_ray_num = 500;
@@ -75,8 +75,8 @@ private:
   mjtNum deep_max = 8;
   mjtNum deep_min = 0.05;
   mjtNum deep_min_ratio;
-  mjtNum *_ray_vec; // h_ray_num * v_ray_num * 3
-  mjtNum *ray_vec;  // h_ray_num * v_ray_num * 3
+  mjtNum *_ray_vec; // h_ray_num * v_ray_num * 3 相对于相机坐标系的偏转
+  mjtNum *ray_vec;  // h_ray_num * v_ray_num * 3 世界坐标系下的偏转
   int *geomids;
   mjtNum *dist_ratio;
 
@@ -120,8 +120,8 @@ void DeepCamera::init(mjModel *m, mjData *d, int cam_id, mjtNum fov_h,
   this->fov_v = fov_v;
   this->h_ray_num = h_ray_num;
   this->v_ray_num = v_ray_num;
-  h_res = fov_h / h_ray_num;
-  v_res = fov_v / v_ray_num;
+  h_res = fov_h / (h_ray_num - 1);
+  v_res = fov_v / (v_ray_num - 1);
   deep_min = dis_range[0];
   deep_max = dis_range[1];
   _init();
@@ -137,8 +137,8 @@ void DeepCamera::init(mjModel *m, mjData *d, int cam_id, mjtNum fov_h,
   this->fov_v = fov_v;
   this->h_res = h_res;
   this->v_res = v_res;
-  h_ray_num = fov_h / h_res;
-  v_ray_num = fov_v / v_res;
+  h_ray_num = fov_h / h_res + 1;
+  v_ray_num = fov_v / v_res + 1;
   deep_min = dis_range[0];
   deep_max = dis_range[1];
   _init();
@@ -218,8 +218,33 @@ void DeepCamera::draw_line(mjvScene *scn, mjtNum *from, mjtNum *to,
   mjv_connector(geom, mjGEOM_LINE, width, from, to);
 }
 
-void DeepCamera::compute_ray_vec_in_cam() {
+// void DeepCamera::compute_ray_vec_in_cam() {
+//   mjtNum ref_vec[3] = {0.0, 0.0, -deep_max};
+//   mjtNum axis_x[3] = {1.0, 0.0, 0.0};
+//   mjtNum quat_x[4];
+//   mjtNum axis_y[3] = {0.0, 1.0, 0.0};
+//   mjtNum quat_y[4];
+//   mjtNum combined_quat[4];
+//   mjtNum res_vec[3];
+//   mjtNum start_h_angle = fov_h / 2.0;
+//   mjtNum start_v_angle = fov_v / 2.0;
+//   for (int i = 0; i < v_ray_num; i++) {
+//     mjtNum angle_x = ((start_v_angle - v_res * i) / 180.0) * mjPI;
+//     mju_axisAngle2Quat(quat_x, axis_x, angle_x);
+//     for (int j = 0; j < h_ray_num; j++) {
+//       mjtNum angle_y = ((start_h_angle - h_res * j) / 180.0) * mjPI;
+//       mju_axisAngle2Quat(quat_y, axis_y, angle_y);
+//       mju_mulQuat(combined_quat, quat_y, quat_x);
+//       mju_rotVecQuat(res_vec, ref_vec, combined_quat);
+//       int idx = _get_idx(i, j) * 3;
+//       _ray_vec[idx + 0] = res_vec[0];
+//       _ray_vec[idx + 1] = res_vec[1];
+//       _ray_vec[idx + 2] = res_vec[2];
+//     }
+//   }
+// }
 
+void DeepCamera::compute_ray_vec_in_cam() {
   mjtNum ref_vec[3] = {0.0, 0.0, -deep_max};
   mjtNum axis_x[3] = {1.0, 0.0, 0.0};
   mjtNum quat_x[4];
@@ -233,12 +258,11 @@ void DeepCamera::compute_ray_vec_in_cam() {
     mjtNum angle_x = ((start_v_angle - v_res * i) / 180.0) * mjPI;
     mju_axisAngle2Quat(quat_x, axis_x, angle_x);
     for (int j = 0; j < h_ray_num; j++) {
-
       mjtNum angle_y = ((start_h_angle - h_res * j) / 180.0) * mjPI;
       mju_axisAngle2Quat(quat_y, axis_y, angle_y);
-      mju_mulQuat(combined_quat, quat_x, quat_y);
+      mju_mulQuat(combined_quat, quat_y, quat_x);
+      // mju_mulQuat(combined_quat, quat_x, quat_y);
       mju_rotVecQuat(res_vec, ref_vec, combined_quat);
-
       int idx = _get_idx(i, j) * 3;
       _ray_vec[idx + 0] = res_vec[0];
       _ray_vec[idx + 1] = res_vec[1];

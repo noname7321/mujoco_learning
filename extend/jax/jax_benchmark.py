@@ -3,8 +3,10 @@ import jax.numpy as jnp
 from time import perf_counter
 
 # 打印使用的设备信息
+print(jax.devices())
 print(f"JAX 使用的设备: {jax.devices()[0]}")
 print(f"JAX 后端平台: {jax.lib.xla_bridge.get_backend().platform}\n")
+
 
 def benchmark(size=8192, dtype=jnp.float32, num_iter=10):
     """基准测试函数：测量大型矩阵乘法的性能"""

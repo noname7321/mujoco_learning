@@ -14,3 +14,6 @@ find_package(OpenCV REQUIRED)
 add_executable(deep_camera dc_test.cpp)
 target_link_libraries(deep_camera mujoco::mujoco glut GL GLU glfw ${OpenCV_LIBS})
 
+add_executable(raycam_test raycam_test.cpp)
+target_link_libraries(raycam_test mujoco::mujoco glut GL GLU glfw ${OpenCV_LIBS})
+

@@ -1,3 +1,4 @@
 /home/albusgive2/mujoco_learning/extend/deep_camera/C++/b/CMakeFiles/deep_camera.dir
+/home/albusgive2/mujoco_learning/extend/deep_camera/C++/b/CMakeFiles/raycam_test.dir
 /home/albusgive2/mujoco_learning/extend/deep_camera/C++/b/CMakeFiles/edit_cache.dir
 /home/albusgive2/mujoco_learning/extend/deep_camera/C++/b/CMakeFiles/rebuild_cache.dir
