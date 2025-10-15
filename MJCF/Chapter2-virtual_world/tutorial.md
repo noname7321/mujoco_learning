@@ -12,12 +12,12 @@
 compiler节点中定义的包括angle（角度单位），autolimits（受力限制）等，常用的就像上面这样写就行，规定角度单位为弧度制，受力限制开启。角度单位为弧度制是机器人开发的常用单位制。
 ### option节点
 ```xml
-<option timestep="0.002" gravity="0 0 -9.81" integrator="implicitfast" 
+<option timestep="0.002" gravity="0 0 -9.81" wind="3,0,0" integrator="implicitfast" 
 density="1.225" viscosity="1.8e-5"/>
 ```
 * timestep代表仿真走一步的时间，也就是运行一次之后仿真计算出timestep时长后的世界，单位秒。timestep是一定要规定的，不然仿真不知道如何计算
 * gravity 重力加速度
-* wind 风在三个方向的速度
+* wind 风在三个方向的速度,含三个量，单位是m/s
 * magnetic="0 -0.5 0"世界磁场，影响磁力传感器
 * density 介质密度，水，空气等，单位kg/m³
 * viscosity 介质粘度
